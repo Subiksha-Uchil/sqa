@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route("/profiles").get( getAllProfiles);
 router.route("/profiles/new").post(isAuthenticatedUser,createProfile);
-router.route("/profiles/:id").put(isAuthenticatedUser,updateProfile).delete(isAuthenticatedUser,authorizeRoles("admin"),deleteProfile).get(getProfileDetails);
-
+router.route("/profiles/:id").put(isAuthenticatedUser,updateProfile).get(getProfileDetails);
+router.route("/admin/product/:id").delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProfile);
 module.exports = router
