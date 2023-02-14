@@ -47,6 +47,11 @@ const profileSchema = mongoose.Schema({
   },
   reviews: [
     {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+      },
       
       name: {
         type: String,
@@ -63,11 +68,7 @@ const profileSchema = mongoose.Schema({
     },
   ],
 
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: true,
-  },
+  
   createdAt: {
     type: Date,
     default: Date.now,
