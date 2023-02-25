@@ -10,10 +10,10 @@ const profileSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Enter profile Description"],
   },
-  price: {
+  salary: {
     type: Number,
-    required: [true, "Please Enter profile Price"],
-    maxLength: [8, "Price cannot exceed 8 characters"],
+    required: [true, "Please Enter profile salary"],
+    maxLength: [8, "Salary cannot exceed 8 characters"],
   },
   ratings: {
     type: Number,
@@ -35,12 +35,23 @@ const profileSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Enter Profile Category"],
   },
-  Stock: {
+
+  location: {
+    type: String,
+    required: [true, "Please Enter Location"],
+  },
+  
+  availabilability: {
     type: Number,
     required: [true, "Please Enter profile Stock"],
     maxLength: [4, "Stock cannot exceed 4 characters"],
     default: 1,
   },
+  experience: {
+    type: Number,
+    default: 0,
+  },
+  
   numOfReviews: {
     type: Number,
     default: 0,
