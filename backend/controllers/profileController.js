@@ -31,7 +31,8 @@ exports.getAllProfiles = catchAsyncError(async (req, res,next) => {
     res.status(200).json({
         sucess: true,
         profile,
-        profileCount,
+      profileCount,
+      resultPerPage,
     });
 });
 

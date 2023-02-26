@@ -1,10 +1,10 @@
 import axios from "axios";
 import {ALL_PROFILE_FAIL,ALL_PROFILE_REQUEST,ALL_PROFILE_SUCCESS,PROFILE_DETAILS_REQUEST,PROFILE_DETAILS_SUCCESS,PROFILE_DETAILS_FAIL, CLEAR_ERRORS} from "../constants/profileConstants"
 
-export const getProfile = (keyword=" ") => async (dispatch) => {
+export const getProfile = (keyword=" ", currentPage = 1) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PROFILE_REQUEST });
-        let link = `/api/v1/profiles?keyword=${keyword}`;
+        let link = `/api/v1/profiles?keyword=${keyword}:page=${currentPage}`;
         const { data } = await axios.get(link);
         dispatch({
             type: ALL_PROFILE_SUCCESS,

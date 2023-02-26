@@ -22,8 +22,8 @@ function App() {
     <Routes> 
       <Route exact path="/" element={<Home />} />
       <Route exact path="/profile/:id" element={<ProfileDetails />} />
-      <Route exact path="/profiles" element={<Profiles />} />
-      <Route exact path="/profiles/:keyword" element={<Profiles/>} />
+      <Route exact path="/profiles" element={<Profiles/>} />
+      <Route exact path="/profiles/:keyword/:page" element={<Profiles/>} />
       <Route path="/search" element={<Search />} />
     </Routes>
     <Footer /> 
