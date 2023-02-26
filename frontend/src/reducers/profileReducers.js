@@ -14,7 +14,7 @@ export const profilesReducer =
                 return {
                     loading: false,
                     profiles: action.payload.profile,
-                    profilesCount: action.payload.profileCount,
+                    profilesCount: action.payload.profilesCount,
                     resultPerPage: action.payload.resultPerPage,
                 };
             case ALL_PROFILE_FAIL:

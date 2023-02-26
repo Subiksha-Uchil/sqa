@@ -24,14 +24,14 @@ exports.getAllProfiles = catchAsyncError(async (req, res,next) => {
 
 
     const resultPerPage = 8;
-    const profileCount = await Profile.countDocuments();
+    const profilesCount = await Profile.countDocuments();
     const Apifeature = new ApiFeatures(Profile.find(), req.query).search().filter().pagination(resultPerPage);
     
     const profile = await Apifeature.query;
     res.status(200).json({
         sucess: true,
         profile,
-      profileCount,
+      profilesCount,
       resultPerPage,
     });
 });

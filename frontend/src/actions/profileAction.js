@@ -4,8 +4,7 @@ import {ALL_PROFILE_FAIL,ALL_PROFILE_REQUEST,ALL_PROFILE_SUCCESS,PROFILE_DETAILS
 export const getProfile = (keyword=" ", currentPage = 1) => async (dispatch) => {
     try {
         dispatch({ type: ALL_PROFILE_REQUEST });
-        let link = `/api/v1/profiles?keyword=${keyword}:page=${currentPage}`;
-        const { data } = await axios.get(link);
+        const { data } = await axios.get(`/api/v1/profiles?keyword=${keyword}&page=${currentPage}`);
         dispatch({
             type: ALL_PROFILE_SUCCESS,
             payload: data,

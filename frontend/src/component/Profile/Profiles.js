@@ -16,7 +16,7 @@ const Profiles = ({match}) => {
     
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
-    }
+    };
     useEffect(() => {
         if (error) {
             alert.error(error);
