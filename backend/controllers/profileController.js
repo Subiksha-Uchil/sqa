@@ -27,10 +27,10 @@ exports.getAllProfiles = catchAsyncError(async (req, res,next) => {
     const profilesCount = await Profile.countDocuments();
     const Apifeature = new ApiFeatures(Profile.find(), req.query).search().filter().pagination(resultPerPage);
     
-    const profile = await Apifeature.query;
+    const profiles = await Apifeature.query;
     res.status(200).json({
-        sucess: true,
-        profile,
+        success: true,
+        profiles,
       profilesCount,
       resultPerPage,
     });

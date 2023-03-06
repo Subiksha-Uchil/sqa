@@ -6,24 +6,32 @@ import { clearErrors, getProfile } from '../../actions/profileAction';
 import Loader from '../layout/Loader/Loader';
 import ProfileCard from '../Home/ProfileCard';
 import Pagination from "react-js-pagination";
+import Typography from "@material-ui/core/Typography";
+import { Slider } from '@material-ui/core';
 
-const Profiles = ({match}) => {
+const Profiles = ({props}) => {
     const dispatch = useDispatch();
     const { keyword } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
+    const [salary, setSalary] = useState([0,25000]);
+
 
     const { profiles, loading, error, profilesCount,resultPerPage } = useSelector((state) => state.profiles);
     
     const setCurrentPageNo = (e) => {
         setCurrentPage(e);
     };
+
+    const salaryHandler = (event,newSalary) => {
+        setSalary(newSalary);
+    };
     useEffect(() => {
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
         }
-        dispatch(getProfile(keyword, currentPage));
-    }, [dispatch, keyword,currentPage]);
+        dispatch(getProfile(keyword, currentPage, salary));
+    }, [dispatch, keyword,currentPage, salary]);
 
     return (
         <Fragment>
@@ -35,22 +43,33 @@ const Profiles = ({match}) => {
                             <ProfileCard key={profiles._id} profiles={profiles}/>
                         ))}
                     </div>
-                    <div className='paginationBox'>
-                       <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={profilesCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
+                    <div className='filterBox'>
+                        <Typography>Salary</Typography>
+                        <Slider value={salary}
+                            onChange={salaryHandler}
+                            valueLabelDisplay="auto"
+                            aria-aria-labelledby='range-slider'
+                            min={0}
+                            max={ 25000} />
                     </div>
+
+                    {resultPerPage < profilesCount && (
+                        <div className='paginationBox'>
+                        <Pagination
+                        activePage={currentPage}
+                        itemsCountPerPage={resultPerPage}
+                        totalItemsCount={profilesCount}
+                        onChange={setCurrentPageNo}
+                        nextPageText="Next"
+                        prevPageText="Prev"
+                        firstPageText="1st"
+                        lastPageText="Last"
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        activeClass="pageItemActive"
+                        activeLinkClass="pageLinkActive"/>
+                            </div>
+                    )}
             </Fragment>}
         </Fragment>
   )

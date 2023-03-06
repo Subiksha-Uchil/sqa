@@ -13,7 +13,7 @@ export const profilesReducer =
             
                 return {
                     loading: false,
-                    profiles: action.payload.profile,
+                    profiles: action.payload.profiles,
                     profilesCount: action.payload.profilesCount,
                     resultPerPage: action.payload.resultPerPage,
                 };
