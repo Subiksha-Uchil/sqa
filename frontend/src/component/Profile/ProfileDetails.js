@@ -8,6 +8,7 @@ import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js"
 import Loader from '../layout/Loader/Loader';
 import { useAlert } from 'react-alert';
+import MetaData from '../layout/MetaData';
 const ProfileDetails = ({match}) => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -34,7 +35,8 @@ const ProfileDetails = ({match}) => {
 
     return (
         <Fragment>
-            {loading ? < Loader/>:(<Fragment>
+            {loading ? < Loader /> : (<Fragment>
+                <MetaData title={`${profile.name}-----Sakhi Portal`} />
             <div className='ProfileDetails'>
                 
                     <Carousel>

@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
     },
     designation: {
         type: String,
-        default:"maid",
+        default:"user",
     },
     role: {
         type: String,

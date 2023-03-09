@@ -11,12 +11,18 @@ module.exports= {
 
     SMPT_SERVICE :"gmail",
 
-    EMAIL : "sakhiportal@gmail.com",
+    EMAIL : "sakhionlineportal@gmail.com",
 
-    PASSWORD : "uhgnmdqubuymojeg",
+    PASSWORD : "muhdgphbgsbtnchc",
 
     SMPT_PORT : "465",
 
-    SMPT_HOST : "smtp.gmail.com",
+    SMPT_HOST: "smtp.gmail.com",
+    
+    CLOUDINARY_NAME: "dgeybjeqs",
+    
+    CLOUDINARY_API_KEY: "178282191558813",
+    
+    CLOUDINARY_API_SECRET:"IoXx9Ro9C4CF7c1LL30UbkepuKw",
 
 }

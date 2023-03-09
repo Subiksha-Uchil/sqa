@@ -20,19 +20,26 @@ exports.createProfile = catchAsyncError(async (req, res, next) => {
 
 //get all profile
 
-exports.getAllProfiles = catchAsyncError(async (req, res,next) => {
+exports.getAllProfiles = catchAsyncError(async (req, res, next) => {
 
 
-    const resultPerPage = 8;
-    const profilesCount = await Profile.countDocuments();
-    const Apifeature = new ApiFeatures(Profile.find(), req.query).search().filter().pagination(resultPerPage);
+  const resultPerPage = 6;
+  const profilesCount = await Profile.countDocuments();
+  const Apifeature = new ApiFeatures(Profile.find(), req.query)
+    .search()
+    .filter()
+    let profiles = await Apifeature.query;
+    let filteredProfilesCount = profiles.length;
     
-    const profiles = await Apifeature.query;
+    Apifeature.pagination(resultPerPage);
+    
+    profiles = await Apifeature.query.clone();
     res.status(200).json({
         success: true,
         profiles,
       profilesCount,
       resultPerPage,
+      filteredProfilesCount,
     });
 });
 
