@@ -11,8 +11,12 @@ import Search from "./component/Profile/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions.js";
+import { useSelector } from "react-redux";
 
 function App() {
+	const { isAuthenticated, users } = useSelector((state) => state.users);
+
 	React.useEffect(() => {
 		WebFont.load({
 			google: {
@@ -21,11 +25,12 @@ function App() {
 		});
 		store.dispatch(loadUser());
 	}, []);
+
 	return (
 		<Router>
 			<Header />
+			{isAuthenticated && <UserOptions users={users} />}
 			<Routes>
-				{isAuthenticated && <UserOptions users={users} />}
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="/profile/:id" element={<ProfileDetails />} />
 				<Route exact path="/profiles" element={<Profiles />} />
