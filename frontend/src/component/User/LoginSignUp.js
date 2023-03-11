@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -73,6 +73,7 @@ export const LoginSignUp = () => {
 		}
 		if (isAuthenticated) {
 			history("/account");
+			// <Navigate to="/account" />;
 		}
 	}, [dispatch, error, alert, history, isAuthenticated]);
 
