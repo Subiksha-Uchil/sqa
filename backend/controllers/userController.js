@@ -167,46 +167,64 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 	sendToken(user, 200, res);
 });
 
-//update user profile
-exports.updateProfile = catchAsyncError(async (req, res, next) => {
+//update user account
+exports.updateAccount = catchAsyncError(async (req, res, next) => {
 	const newUserData = {
 		name: req.body.name,
 		email: req.body.email,
 	};
 
-	//we will add cloudinary later
-	const user = await Users.findOneAndUpdate(req.user.id, newUserData, {
+	if (req.body.avatar !== "") {
+		const users = await Users.findById(req.user.id);
+
+		const imageId = users.avatar.public_id;
+
+		await cloudinary.v2.uploader.destroy(imageId);
+
+		const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+			folder: "avatars",
+			width: 150,
+			crop: "scale",
+		});
+
+		newUserData.avatar = {
+			public_id: myCloud.public_id,
+			url: myCloud.secure_url,
+		};
+	}
+
+	const users = await Users.findByIdAndUpdate(req.user.id, newUserData, {
 		new: true,
 		runValidators: true,
-		useFindandModify: false,
+		useFindAndModify: false,
 	});
 
 	res.status(200).json({
-		sucess: true,
+		success: true,
 	});
 });
 
 //get all users
 exports.getAllUser = catchAsyncError(async (req, res, next) => {
-	const user = await Users.find();
+	const users = await Users.find();
 
 	res.status(200).json({
 		sucess: true,
-		user,
+		users,
 	});
 });
 
 //get single user profiles(admin)
 exports.getSingleUser = catchAsyncError(async (req, res, next) => {
-	const user = await Users.findById(req.params.id);
+	const users = await Users.findById(req.params.id);
 
-	if (!user) {
+	if (!users) {
 		return next(new ErrorHandler(`User does not exist!!! ${req.params.id}`));
 	}
 
 	res.status(200).json({
 		sucess: true,
-		user,
+		users,
 	});
 });
 
@@ -233,9 +251,9 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 
 exports.deleteUser = catchAsyncError(async (req, res, next) => {
 	//we will remove cloudinary later
-	const user = await Users.findById(req.params.id);
+	const users = await Users.findById(req.params.id);
 
-	if (!user) {
+	if (!users) {
 		return next(
 			new ErrorHandler(`User does not exist with id: ${req.params.id}`)
 		);

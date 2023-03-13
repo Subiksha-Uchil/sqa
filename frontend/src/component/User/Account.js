@@ -27,9 +27,9 @@ const Account = () => {
 					<MetaData title={`${users.name}'s Account`} />
 					<div className="accountContainer">
 						<div>
-							<h1>My Profile</h1>
+							<h1>My Account</h1>
 							<img src={users.avatar.url} alt={users.name} />
-							<Link to="/me/update">Edit Profile</Link>
+							<Link to="/me/update">Edit account</Link>
 						</div>
 						<div>
 							<div>

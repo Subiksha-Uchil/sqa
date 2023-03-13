@@ -10,10 +10,10 @@ import {
 	LOAD_USER_FAIL,
 	LOGOUT_SUCCESS,
 	LOGOUT_FAIL,
-	UPDATE_PROFILE_REQUEST,
-	UPDATE_PROFILE_SUCCESS,
-	UPDATE_PROFILE_FAIL,
-	UPDATE_PROFILE_RESET,
+	UPDATE_ACCOUNT_REQUEST,
+	UPDATE_ACCOUNT_SUCCESS,
+	UPDATE_ACCOUNT_FAIL,
+	UPDATE_ACCOUNT_RESET,
 	UPDATE_PASSWORD_REQUEST,
 	UPDATE_PASSWORD_SUCCESS,
 	UPDATE_PASSWORD_RESET,
@@ -102,9 +102,9 @@ export const userReducer = (state = { users: [] }, action) => {
 	}
 };
 
-export const profileReducer = (state = {}, action) => {
+export const accountReducer = (state = {}, action) => {
 	switch (action.type) {
-		case UPDATE_PROFILE_REQUEST:
+		case UPDATE_ACCOUNT_REQUEST:
 		case UPDATE_PASSWORD_REQUEST:
 		case UPDATE_USER_REQUEST:
 		case DELETE_USER_REQUEST:
@@ -112,7 +112,7 @@ export const profileReducer = (state = {}, action) => {
 				...state,
 				loading: true,
 			};
-		case UPDATE_PROFILE_SUCCESS:
+		case UPDATE_ACCOUNT_SUCCESS:
 		case UPDATE_PASSWORD_SUCCESS:
 		case UPDATE_USER_SUCCESS:
 			return {
@@ -129,7 +129,7 @@ export const profileReducer = (state = {}, action) => {
 				message: action.payload.message,
 			};
 
-		case UPDATE_PROFILE_FAIL:
+		case UPDATE_ACCOUNT_FAIL:
 		case UPDATE_PASSWORD_FAIL:
 		case UPDATE_USER_FAIL:
 		case DELETE_USER_FAIL:
@@ -139,7 +139,7 @@ export const profileReducer = (state = {}, action) => {
 				error: action.payload,
 			};
 
-		case UPDATE_PROFILE_RESET:
+		case UPDATE_ACCOUNT_RESET:
 		case UPDATE_PASSWORD_RESET:
 		case UPDATE_USER_RESET:
 			return {
