@@ -7,7 +7,7 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
-
+const { FrontEndURL } = require("../config/env");
 //register a user
 exports.registerUser = catchAsyncError(async (req, res, next) => {
 	const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
@@ -80,9 +80,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 	const resetToken = users.getResetPasswordToken();
 
 	await users.save({ validateBeforeSave: false });
-	const resetpasswordUrl = `${req.protocol}://${req.get(
-		"host"
-	)}/api/v1/password/reset/${resetToken}`;
+	const resetpasswordUrl = `${req.protocol}://${FrontEndURL}/password/reset/${resetToken}`;
 	const message = `Your password reset was successfully generated:- \n\n${resetpasswordUrl}\n\nIf you have not requested a password reset, please ignore this message`;
 	try {
 		await sendEmail({
@@ -149,9 +147,9 @@ exports.getUserDetails = catchAsyncError(async (req, res, next) => {
 
 //update user password
 exports.updatePassword = catchAsyncError(async (req, res, next) => {
-	const user = await Users.findById(req.user.id).select("+password");
+	const users = await Users.findById(req.user.id).select("+password");
 
-	const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+	const isPasswordMatched = await users.comparePassword(req.body.oldPassword);
 
 	if (!isPasswordMatched) {
 		return next(new ErrorHandler("Old password is incorrect", 400));
@@ -161,10 +159,10 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 		return next(new ErrorHandler("Password doesn't match", 400));
 	}
 
-	user.password = req.body.newPassword;
-	await user.save();
+	users.password = req.body.newPassword;
+	await users.save();
 
-	sendToken(user, 200, res);
+	sendToken(users, 200, res);
 });
 
 //update user account
