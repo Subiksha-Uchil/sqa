@@ -1,10 +1,14 @@
-const express = require('express');
+const express = require("express");
 
 const app = express();
-const cookieParser = require('cookie-parser');
+
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const errorMiddleware = require("./middleware/error");
+app.use(bodyParser.json({ limit: "1gb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "1gb" }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));

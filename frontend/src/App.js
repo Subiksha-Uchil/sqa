@@ -19,6 +19,7 @@ import UpdateAccount from "./component/User/UpdateAccount.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
+import CreateProfile from "./component/User/CreateProfile.js";
 
 function App() {
 	const { loading, isAuthenticated, users } = useSelector(
@@ -48,6 +49,7 @@ function App() {
 					<Route path="/account" element={<Account />} />
 					<Route path="/me/update" element={<UpdateAccount />} />
 					<Route path="/password/update" element={<UpdatePassword />} />
+					<Route path="/profile/new" element={<CreateProfile />} />
 				</Route>
 				{/* <Route
 					path="/account"

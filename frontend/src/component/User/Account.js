@@ -47,6 +47,7 @@ const Account = () => {
 
 							<div>
 								<Link to="/password/update">Change Password</Link>
+								<Link to="/profile/new">Create Your own Profile</Link>
 							</div>
 						</div>
 					</div>

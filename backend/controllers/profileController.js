@@ -3,18 +3,41 @@ const Profile = require("../models/profileModel");
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const ApiFeatures = require("../utils/apifeatures");
+const cloudinary = require("cloudinary");
 
-//create profile--admin
+//create profile
 exports.createProfile = catchAsyncError(async (req, res, next) => {
-	req.body.user = req.user.id;
+	let images = [];
+
+	if (typeof req.body.images === "string") {
+		images.push(req.body.images);
+	} else {
+		images = req.body.images;
+	}
+
+	const imagesLinks = [];
+
+	for (let i = 0; i < images.length; i++) {
+		const result = await cloudinary.v2.uploader.upload(images[i], {
+			folder: "profiles",
+		});
+
+		imagesLinks.push({
+			public_id: result.public_id,
+			url: result.secure_url,
+		});
+	}
+
+	req.body.images = imagesLinks;
+	req.body.users = req.user.id;
+
 	const profile = await Profile.create(req.body);
 
 	res.status(201).json({
-		sucess: true,
+		success: true,
 		profile,
 	});
 });
-
 //get all profile
 
 exports.getAllProfiles = catchAsyncError(async (req, res, next) => {

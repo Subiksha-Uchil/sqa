@@ -5,6 +5,10 @@ import {
 	PROFILE_DETAILS_REQUEST,
 	PROFILE_DETAILS_SUCCESS,
 	PROFILE_DETAILS_FAIL,
+	NEW_PROFILE_FAIL,
+	NEW_PROFILE_REQUEST,
+	NEW_PROFILE_RESET,
+	NEW_PROFILE_SUCCESS,
 	NEW_REVIEW_REQUEST,
 	NEW_REVIEW_SUCCESS,
 	NEW_REVIEW_FAIL,
@@ -97,6 +101,40 @@ export const newReviewReducer = (state = {}, action) => {
 				error: action.payload,
 			};
 		case NEW_REVIEW_RESET:
+			return {
+				...state,
+				success: false,
+			};
+		case CLEAR_ERRORS:
+			return {
+				...state,
+				error: null,
+			};
+		default:
+			return state;
+	}
+};
+
+export const newProfileReducer = (state = { profile: {} }, action) => {
+	switch (action.type) {
+		case NEW_PROFILE_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case NEW_PROFILE_SUCCESS:
+			return {
+				loading: false,
+				success: action.payload.success,
+				profile: action.payload.profile,
+			};
+		case NEW_PROFILE_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+		case NEW_PROFILE_RESET:
 			return {
 				...state,
 				success: false,
