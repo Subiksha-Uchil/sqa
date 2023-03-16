@@ -4,8 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
 	profilesReducer,
 	profileDetailsReducer,
-	profileReviewsReducer,
-	reviewReducer,
+	newReviewReducer,
 } from "./reducers/profileReducers";
 import {
 	accountReducer,
@@ -19,8 +18,7 @@ const reducer = combineReducers({
 	users: userReducer,
 	account: accountReducer,
 	forgotPassword: forgotPasswordReducer,
-	profileReviews: profileReviewsReducer,
-	review: reviewReducer,
+	newReview: newReviewReducer,
 });
 
 let initialState = {};

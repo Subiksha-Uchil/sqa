@@ -3,7 +3,11 @@ import Carousel from "react-material-ui-carousel";
 import "./ProfileDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { clearErrors, getProfileDetails } from "../../actions/profileAction";
+import {
+	clearErrors,
+	newReview,
+	getProfileDetails,
+} from "../../actions/profileAction";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
@@ -17,7 +21,8 @@ import {
 	Button,
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-const ProfileDetails = ({ match }) => {
+import { NEW_REVIEW_RESET } from "../../constants/profileConstants";
+const ProfileDetails = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	const alert = useAlert();
@@ -25,22 +30,9 @@ const ProfileDetails = ({ match }) => {
 	const { profile, loading, error } = useSelector(
 		(state) => state.profileDetails
 	);
-
-	const [open, setOpen] = useState(false);
-	const [rating, setRating] = useState(0);
-	const [comment, setComment] = useState("");
-
-	useEffect(() => {
-		if (error) {
-			alert.error(error);
-			dispatch(clearErrors());
-		}
-		dispatch(getProfileDetails(id));
-	}, [dispatch, id, error, alert]);
-
-	const submitReviewToggle = () => {
-		open ? setOpen(false) : setOpen(true);
-	};
+	const { success, error: reviewError } = useSelector(
+		(state) => state.newReview
+	);
 
 	const options = {
 		edit: false,
@@ -50,6 +42,58 @@ const ProfileDetails = ({ match }) => {
 		value: profile.ratings,
 		isHalf: true,
 	};
+
+	const { isAuthenticated, users } = useSelector((state) => state.users);
+
+	const [open, setOpen] = useState(false);
+	const [rating, setRating] = useState(0);
+	const [comment, setComment] = useState("");
+
+	const submitReviewToggle = () => {
+		if (!isAuthenticated) {
+			alert.show("Login/SignUp to access this resource");
+		} else {
+			open ? setOpen(false) : setOpen(true);
+		}
+	};
+
+	const contactInfo = () => {
+		if (!isAuthenticated) {
+			alert.show("Login/SignUp to access this resource");
+		} else {
+		}
+	};
+
+	const reviewSubmitHandler = () => {
+		const myForm = new FormData();
+
+		myForm.set("rating", rating);
+		myForm.set("comment", comment);
+		myForm.set("profileId", id);
+
+		dispatch(newReview(myForm));
+
+		setOpen(false);
+	};
+
+	useEffect(() => {
+		if (error) {
+			alert.error(error);
+			dispatch(clearErrors());
+		}
+
+		if (reviewError) {
+			alert.error(reviewError);
+			dispatch(clearErrors());
+		}
+
+		if (success) {
+			alert.success("Review Submitted Successfully!!!");
+			dispatch({ type: NEW_REVIEW_RESET });
+		}
+
+		dispatch(getProfileDetails(id));
+	}, [dispatch, id, error, alert]);
 
 	return (
 		<Fragment>
@@ -90,8 +134,12 @@ const ProfileDetails = ({ match }) => {
 							<div className="detailsBlock-4">
 								Description:<p>{profile.description}</p>
 							</div>
-							<button className="submitReview">Submit Review</button>
-							<button className="contactNow">Contact Now</button>
+							<button className="submitReview" onClick={submitReviewToggle}>
+								Submit Review
+							</button>
+							<button className="contactNow" onClick={contactInfo}>
+								Contact Now
+							</button>
 						</div>
 					</div>
 					<h3 className="reviewsHeading">REVIEWS</h3>
@@ -115,15 +163,20 @@ const ProfileDetails = ({ match }) => {
 								onChange={(e) => setComment(e.target.value)}></textarea>
 						</DialogContent>
 						<DialogActions>
-							<Button>Cancel</Button>
-							<Button>Submit</Button>
+							<Button onClick={submitReviewToggle} color="secondary">
+								Cancel
+							</Button>
+							<Button onClick={reviewSubmitHandler} color="primary">
+								Submit
+							</Button>
 						</DialogActions>
 					</Dialog>
-
 					{profile.reviews && profile.reviews[0] ? (
 						<div className="reviews">
 							{profile.reviews &&
-								profile.reviews.map((review) => <ReviewCard review={review} />)}
+								profile.reviews.map((reviews) => (
+									<ReviewCard review={reviews} />
+								))}
 						</div>
 					) : (
 						<p className="noReviews">No Reviews Yet</p>
