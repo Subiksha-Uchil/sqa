@@ -22,6 +22,12 @@ import {
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/profileConstants";
+
+import DialogContentText from "@mui/material/DialogContentText";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import { red } from "@material-ui/core/colors";
+
 const ProfileDetails = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
@@ -34,6 +40,9 @@ const ProfileDetails = () => {
 		(state) => state.newReview
 	);
 
+	const theme = useTheme();
+	const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
 	const options = {
 		edit: false,
 		color: "rgba(20,20,20,0.2)",
@@ -45,7 +54,8 @@ const ProfileDetails = () => {
 
 	const { isAuthenticated, users } = useSelector((state) => state.users);
 
-	const [open, setOpen] = useState(false);
+	const [openReview, setOpenReview] = useState(false);
+	const [openContact, setOpenContact] = useState(false);
 	const [rating, setRating] = useState(0);
 	const [comment, setComment] = useState("");
 
@@ -53,15 +63,12 @@ const ProfileDetails = () => {
 		if (!isAuthenticated) {
 			alert.show("Login/SignUp to access this resource");
 		} else {
-			open ? setOpen(false) : setOpen(true);
+			openReview ? setOpenReview(false) : setOpenReview(true);
 		}
 	};
 
-	const contactInfo = () => {
-		if (!isAuthenticated) {
-			alert.show("Login/SignUp to access this resource");
-		} else {
-		}
+	const handleClose = () => {
+		setOpenContact(false);
 	};
 
 	const reviewSubmitHandler = () => {
@@ -73,7 +80,7 @@ const ProfileDetails = () => {
 
 		dispatch(newReview(myForm));
 
-		setOpen(false);
+		setOpenReview(false);
 	};
 
 	useEffect(() => {
@@ -94,6 +101,13 @@ const ProfileDetails = () => {
 
 		dispatch(getProfileDetails(id));
 	}, [dispatch, id, error, alert]);
+	const contactInfo = () => {
+		if (!isAuthenticated) {
+			alert.show("Login/SignUp to access this resource");
+		} else {
+			setOpenContact(true);
+		}
+	};
 
 	return (
 		<Fragment>
@@ -145,7 +159,7 @@ const ProfileDetails = () => {
 					<h3 className="reviewsHeading">REVIEWS</h3>
 					<Dialog
 						aria-labelledby="simple-dialog-title"
-						open={open}
+						open={openReview}
 						onClose={submitReviewToggle}>
 						<DialogTitle>Submit Review</DialogTitle>
 						<DialogContent className="submitDialog">
@@ -171,6 +185,34 @@ const ProfileDetails = () => {
 							</Button>
 						</DialogActions>
 					</Dialog>
+
+					<Dialog
+						// className="Contact"
+						fullScreen={fullScreen}
+						open={openContact}
+						onClose={handleClose}>
+						<DialogTitle id="contact-info" style={{ minWidth: 300 }}>
+							Contact Details of {profile.name}
+						</DialogTitle>
+						<DialogContentText
+							style={{
+								padding: 10,
+							}}>
+							Contact Number: `{profile.phoneNumber}`{" "}
+						</DialogContentText>
+						<DialogContentText
+							style={{
+								padding: 10,
+							}}>
+							Email ID:`{profile.email}`
+						</DialogContentText>
+						<DialogActions>
+							<Button autoFocus onClick={handleClose}>
+								Close
+							</Button>
+						</DialogActions>
+					</Dialog>
+
 					{profile.reviews && profile.reviews[0] ? (
 						<div className="reviews">
 							{profile.reviews &&
