@@ -7,6 +7,7 @@ import { getProfile, clearErrors } from "../../actions/profileAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import BackgroundSlider from "./BackgroundSlider";
 
 const Home = () => {
 	const alert = useAlert();
@@ -30,21 +31,13 @@ const Home = () => {
 			) : (
 				<Fragment>
 					<MetaData title="Sakhiii!!" />
+					<div className="title">
+						<img src="logo.png" height={100} width={100} />
+						<h1>Sakhiiii</h1>
+						<p>help you hire the right one</p>
+					</div>
 					<div className="banner">
-						<h1>Welcome to Sakhi - an Online Job Portal Website </h1>
-						<p>
-							{" "}
-							Find the right candidate for all your daily household
-							requirements!!
-						</p>
-
-						<a href="#container">
-							<button>
-								{" "}
-								Scroll
-								<CgMouse />
-							</button>
-						</a>
+						<BackgroundSlider />
 					</div>
 					<h2 className="homeHeading">Featured Profiles</h2>
 					<div className="container" id="container">

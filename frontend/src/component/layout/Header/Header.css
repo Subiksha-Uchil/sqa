@@ -1,7 +1,8 @@
 .speedDial {
 	position: fixed;
 	right: 3vmax;
-	top: 3vmax;
+	top: 5vmax;
+	padding: 5vmax;
 }
 
 .speedDialIcon {

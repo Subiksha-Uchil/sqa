@@ -1,0 +1,49 @@
+.countiner-style {
+	height: 100%;
+	position: relative;
+}
+.title {
+	top: 0%;
+	right: 2%;
+}
+.description {
+	width: 600px;
+	position: absolute;
+	z-index: 1;
+	color: rgb(255, 255, 255);
+	top: 40%;
+	left: 2%;
+	background-color: hsla(0, 11%, 24%, 0.3);
+}
+
+.description h1 {
+	font-size: 46px;
+	font-family: "Courier New", monospace;
+}
+
+.description p {
+	font-size: 32px;
+	font-family: "Times New Roman", serif;
+}
+.carousel-boult {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 5%;
+	left: 45%;
+}
+
+.carousel-boult span {
+	width: 45px;
+	height: 12px;
+	background-color: RGB(134, 112, 112);
+	margin-left: 10px;
+	border-radius: 10px;
+	cursor: pointer;
+	box-shadow: 3px 2px 2px rgba(244, 243, 243, 0.338);
+}
+
+.carousel-boult span:hover {
+	background-color: rgb(245, 235, 235);
+}
