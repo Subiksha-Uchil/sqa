@@ -1,3 +1,69 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Arvo";
+}
+
+.main {
+	height: 30vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.main > h1 {
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(134, 112, 112);
+	font-size: 4rem;
+}
+
+.roller {
+	height: 4.125rem;
+	line-height: 4rem;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: rgb(213, 180, 180);
+}
+
+#spare-time {
+	font-size: 1rem;
+	font-style: italic;
+	letter-spacing: 1rem;
+	margin-top: 0;
+	color: rgb(213, 180, 180);
+}
+
+.roller #rolltext {
+	position: absolute;
+	top: 0;
+	animation: slide 10s infinite;
+}
+
+@keyframes slide {
+	0% {
+		top: 0;
+	}
+	25% {
+		top: -4rem;
+	}
+	50% {
+		top: -8rem;
+	}
+	72.5% {
+		top: -12.25rem;
+	}
+}
+
+body {
+	background-color: #f5ebeb;
+}
 .banner {
 	text-align: center;
 	height: 100vh;
@@ -9,10 +75,41 @@
 	text-align: center;
 	height: 100%;
 }
+.how {
+	padding-top: 1.5%;
+	align-items: center;
+}
+.how > h1 {
+	color: rgb(213, 180, 180);
+	text-align: center;
+	font-family: Tahoma, sans-serif;
+	border-bottom: 1px transparent rgba(21, 21, 21, 0.5);
+}
+.MuiCardContent-root > h3 {
+	height: "50";
+	font-family: Georgia, serif;
+	color: rgb(134, 112, 112);
+	text-align: center;
+}
+
+.cards {
+	color: rgb(213, 180, 180);
+	padding-left: 8%;
+	padding-right: 8%;
+	padding-top: 5%;
+	justify-content: space-between;
+}
+.grid:hover {
+	transform: translateY(-1vmax);
+}
+.Card {
+	background-color: rgb(213, 180, 180);
+	justify-content: space-between;
+}
 .title {
 	top: 0%;
 	right: 3%;
-	color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 	position: absolute;
 	z-index: 1;
 	align-items: right;
@@ -25,16 +122,17 @@
 	text-align: center;
 	font-size: 22px;
 	font-family: Copperplate, Papyrus, fantasy;
-	color: white;
-	background-color: hsla(0, 11%, 24%, 0.3);
+	color: rgba(0, 0, 0, 0.53);
+	background-color: hsla(0, 0%, 100%, 0.3);
+	border-bottom: 1px solid rgba(21, 21, 21, 0.5);
 }
 
 .title > p {
 	text-align: right;
 	font-family: cursive;
 	font-size: 10px;
-	color: white;
-	background-color: hsla(0, 11%, 24%, 0.3);
+	color: rgba(0, 0, 0, 0.53);
+	background-color: hsla(0, 0%, 100%, 0.3);
 }
 .banner > h1 {
 	margin: 4vmax;
@@ -81,6 +179,41 @@
 	color: rgb(0, 0, 0, 0.7);
 }
 
+.services {
+	padding-top: 2%;
+	justify-content: space-between;
+	background-color: rgb(213, 180, 180);
+	max-height: 800;
+}
+
+.service:hover {
+	transform: translateY(-1vmax);
+}
+
+.services > h1 {
+	padding-top: 1%;
+	padding-bottom: 5%;
+	text-align: center;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 3rem;
+	color: rgb(245, 235, 235);
+	text-transform: uppercase;
+}
+
+.service1 {
+	padding-top: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
+	justify-content: space-between;
+}
+.service2 {
+	padding-top: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 2%;
+	justify-content: space-between;
+}
+
 .container {
 	display: flex;
 	margin: 2vmax auto;
@@ -100,61 +233,66 @@
 	margin: 2vmax;
 	transition: all 0.5s;
 	padding-bottom: 0.5vmax;
+	background-color: rgb(228, 208, 208);
 }
 
-.productCard > img {
+.profileCard > img {
 	width: 14vmax;
 }
 
-.productCard > div {
+.profileCard > div {
 	margin: 0.5vmax;
 	display: flex;
 	justify-content: flex-start;
 }
 
-.productCardSpan {
+.profileCard > div > Span {
 	margin: 0.5vmax;
-	font: 300 0.7vmax "Roboto";
+	font: 1.5vmax "Roboto";
 }
 
-.productCard > p {
+.profileCard > p {
 	font-family: "Roboto";
-	font-size: 3vmax;
+	font-size: 2vmax;
 	margin: 1vmax 0.5vmax;
 	margin-bottom: 0;
 }
 
-.productCard > span {
+.profileCard > span {
 	margin: 0.5vmax;
 	color: "#cea6ef";
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-	font-size: 3vmax;
+	font-size: 1.5vmax;
 }
 
-.productCard:hover {
+.profileCard:hover {
 	box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
 
 	transform: translateY(-1vmax);
 }
 
 @media screen and (max-width: 600px) {
-	.productCard > p {
+	.profileCard > p {
 		font-size: 2.5vmax;
 		align-items: center;
 	}
+	.banner {
+		align-items: center;
+		display: block;
+	}
 
-	.productCard > div {
+	.profileCard > div {
 		text-align: center;
 		margin: 2.5vmax;
 		display: block;
 	}
 
-	.productCard > span {
+	.profileCard > span {
 		text-align: center;
 		font-size: 3vmax;
 	}
 
-	.productCard > div > span {
+	.profileCard > div > span {
 		text-align: center;
 		margin: 0 0.5vmax;
 		font: 350 1vmax "Roboto";

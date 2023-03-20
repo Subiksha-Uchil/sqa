@@ -44,7 +44,6 @@ const CreateProfile = ({}) => {
 		"HomeChef",
 		"BabySitter",
 		"Massage-Therapist",
-		"House-Help",
 		"Plumber",
 		"Electrician",
 	];

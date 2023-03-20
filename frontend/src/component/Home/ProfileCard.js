@@ -17,8 +17,8 @@ const ProfileCard = ({ profiles }) => {
 			<img src={profiles.images[0].url} alt={profiles.name} style={{}} />
 			<p> {profiles.name}</p>
 			<div>
-				<ReactStars {...options} />{" "}
-				<span>({profiles.numOfReviews} Reviews)</span>
+				<ReactStars {...options} />
+				<span>({profiles.category})</span>
 			</div>
 			<span>{`${profiles.experience} years of expertise`}</span>
 		</Link>

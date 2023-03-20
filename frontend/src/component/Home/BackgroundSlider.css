@@ -30,8 +30,8 @@
 	align-items: center;
 	justify-content: center;
 	position: absolute;
-	bottom: 5%;
-	left: 45%;
+	bottom: 10%;
+	right: 15%;
 }
 
 .carousel-boult span {
@@ -46,4 +46,24 @@
 
 .carousel-boult span:hover {
 	background-color: rgb(245, 235, 235);
+}
+
+@media screen and (max-width: 600px) {
+	.carousel-boult span {
+		align-items: center;
+	}
+
+	.description {
+		align-items: center;
+		display: block;
+		max-width: fit-content;
+	}
+
+	.carousel-boult {
+		align-items: center;
+	}
+
+	.carousel-boult span {
+		align-items: center;
+	}
 }
