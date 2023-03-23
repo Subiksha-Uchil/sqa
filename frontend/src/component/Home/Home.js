@@ -14,11 +14,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import Fade from "react-reveal/Fade";
+import { redirect, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
+	const history = useNavigate();
 	const { loading, error, profiles, profilesCount } = useSelector(
 		(state) => state.profiles
 	);
@@ -63,201 +66,296 @@ const Home = () => {
 							</div>
 						</h1>
 					</div>
-					<div className="services">
-						<h1>Our Services</h1>
-						<Grid className="service1" container rowSpacing={5} spacing={1}>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="maid.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="babysitter.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="cooking.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-						</Grid>
-						<Grid container className="service2" rowSpacing={2} spacing={2}>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="massage.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="plumber.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-							<Grid Item xs={4} className="service">
-								<Card sx={{ maxWidth: 345 }}>
-									<CardActionArea>
-										<CardMedia
-											component="img"
-											height="220"
-											image="electrician.png"
-											alt="maid"
-										/>
-										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												Lizard
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid>
-						</Grid>
-					</div>
+					<Fade bottom>
+						<div className="services">
+							<h1>Our Services</h1>
 
-					<h2 className="homeHeading">Featured Profiles</h2>
-					<div className="container" id="container">
-						{profiles &&
-							profiles.map((profiles) => <Profile profiles={profiles} />)}
-					</div>
-					<div className="how">
-						<h1>Want to get hired, this is how it works</h1>
-					</div>
+							<div className="service1" rowSpacing={1}>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="maid.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Maid
+										</Typography>
+										<Typography variant="body2">
+											Professional help in household chores.
+											<br />
+											{"Washing and Cleaning."}
+										</Typography>
+									</CardContent>
+								</Card>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="cooking.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Home-Chef
+										</Typography>
+										<Typography variant="body2">
+											Chef to help at daily cooking at home.
+											<br />
+											{"Could be any cuisine of your choice."}
+										</Typography>
+									</CardContent>
+								</Card>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="babysitter.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Baby-Sitter
+										</Typography>
+										<Typography variant="body2">
+											Professional help in taking care of your
+											<br />
+											{"infant or toddler of any age."}
+										</Typography>
+									</CardContent>
+								</Card>
+							</div>
+							<div className="service1" spacing={1}>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="massage.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Massage Therapist
+										</Typography>
+										<Typography variant="body2">
+											Highly skilled massage therapist
+											<br />
+											{"to relieve your body's strain."}
+										</Typography>
+									</CardContent>
+								</Card>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="electrician.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Electrician
+										</Typography>
+										<Typography variant="body2">
+											Here to help you at your electricity
+											<br />
+											{"emergencies and power-cuts"}
+										</Typography>
+									</CardContent>
+								</Card>
+								<Card
+									sx={{
+										minWidth: 300,
+										backgroundColor: "#fff",
+										textAlign: "center",
+									}}>
+									<CardContent>
+										<Typography
+											sx={{
+												fontSize: 14,
+											}}
+											color="text.secondary"
+											gutterBottom>
+											<img
+												style={{
+													height: 50,
+													width: 50,
+													// borderRadius: 30,
+												}}
+												src="plumber.png"
+											/>
+										</Typography>
+										<Typography
+											sx={{ mb: 1.5, borderBottom: 1 }}
+											color="text.secondary">
+											Plumber
+										</Typography>
+										<Typography variant="body2">
+											Professionals to help you fix your
+											<br />
+											{"water emergencies."}
+										</Typography>
+									</CardContent>
+								</Card>
+							</div>
+							<div className="explore">
+								<button onClick={() => history("/profiles")}>
+									Explore these services..
+								</button>
+							</div>
+						</div>
+					</Fade>
+					<Fade bottom>
+						<h2 className="homeHeading">Featured Profiles</h2>
+						<div className="container" id="container">
+							{profiles &&
+								profiles.map((profiles) => <Profile profiles={profiles} />)}
+						</div>
+					</Fade>
+					<Fade bottom>
+						<div className="how">
+							<h1>Want to get hired, this is how it works</h1>
+						</div>
 
-					<div className="cards">
-						<Grid container rowSpacing={2} spacing={2}>
-							<Grid Item className="grid" xs={4}>
-								<Card
-									sx={{
-										maxWidth: 345,
-										bgcolor: "#E4D0D0",
-										borderRadius: 2,
-										maxHeight: 400,
-									}}>
-									<CardMedia component="img" height="185" image="6333040.jpg" />
-									<CardContent height="50" font-family="Tahoma, sans-serif">
-										<h3> Register Yourself</h3>
-									</CardContent>
-								</Card>
+						<div className="cards">
+							<Grid container rowSpacing={2} spacing={2}>
+								<Grid Item className="grid" xs={4}>
+									<Card
+										sx={{
+											maxWidth: 345,
+											bgcolor: "#E4D0D0",
+											borderRadius: 2,
+											maxHeight: 400,
+										}}>
+										<CardMedia
+											component="img"
+											height="185"
+											image="6333040.jpg"
+										/>
+										<CardContent height="50" font-family="Tahoma, sans-serif">
+											<h3> Register Yourself</h3>
+										</CardContent>
+									</Card>
+								</Grid>
+								<Grid Item className="grid" xs={4}>
+									<Card
+										sx={{
+											maxWidth: 345,
+											maxHeight: 400,
+											bgcolor: "#E4D0D0",
+										}}>
+										<CardMedia
+											component="img"
+											height="180"
+											image="build.avif"
+										/>
+										<CardContent height="50" font-family="Tahoma, sans-serif">
+											<h3>Create your own Profile</h3>
+										</CardContent>
+										<CardActions></CardActions>
+									</Card>
+								</Grid>
+								<Grid Item className="grid" xs={4}>
+									<Card
+										sx={{
+											maxWidth: 345,
+											bgcolor: "#E4D0D0",
+											borderRadius: 2,
+										}}>
+										<CardMedia
+											component="img"
+											height="180"
+											image="hired.avif"
+										/>
+										<CardContent height="50" font-family="Tahoma, sans-serif">
+											<h3>Get Hired</h3>
+										</CardContent>
+										<CardActions></CardActions>
+									</Card>
+								</Grid>
 							</Grid>
-							<Grid Item className="grid" xs={4}>
-								<Card
-									sx={{
-										maxWidth: 345,
-										maxHeight: 400,
-										bgcolor: "#E4D0D0",
-									}}>
-									<CardMedia component="img" height="180" image="build.avif" />
-									<CardContent height="50" font-family="Tahoma, sans-serif">
-										<h3>Create your own Profile</h3>
-									</CardContent>
-									<CardActions></CardActions>
-								</Card>
-							</Grid>
-							<Grid Item className="grid" xs={4}>
-								<Card
-									sx={{
-										maxWidth: 345,
-										bgcolor: "#E4D0D0",
-										borderRadius: 2,
-									}}>
-									<CardMedia component="img" height="180" image="hired.avif" />
-									<CardContent height="50" font-family="Tahoma, sans-serif">
-										<h3>Get Hired</h3>
-									</CardContent>
-									<CardActions></CardActions>
-								</Card>
-							</Grid>
-						</Grid>
-					</div>
+						</div>
+					</Fade>
 				</Fragment>
 			)}
 		</Fragment>

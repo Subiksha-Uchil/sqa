@@ -11,7 +11,6 @@ import {
 	NEW_REVIEW_FAIL,
 	NEW_PROFILE_FAIL,
 	NEW_PROFILE_REQUEST,
-	NEW_PROFILE_RESET,
 	NEW_PROFILE_SUCCESS,
 	CLEAR_ERRORS,
 } from "../constants/profileConstants";

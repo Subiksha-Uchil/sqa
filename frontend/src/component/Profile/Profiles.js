@@ -23,18 +23,9 @@ const locations = [
 	"Mumbai",
 	"Pune",
 	"Delhi",
-	"Hyderabad",
 	"Kolkata",
 	"Bangalore",
-	"Agra",
 	"Ahamdabad",
-	"Chennai",
-	"Bihar",
-	"Jaipur",
-	"Indore",
-	"Varanasi",
-	"Nagpur",
-	"Patna",
 ];
 const Profiles = ({ props }) => {
 	const dispatch = useDispatch();
@@ -91,7 +82,7 @@ const Profiles = ({ props }) => {
 			) : (
 				<Fragment>
 					<MetaData title="Profiles----Sakhi Portal" />
-					<h2 className="profileHeading">Profiles</h2>
+					<h1 className="profileHeading">Profiles of all Service Providers</h1>
 					<div className="profiles">
 						{profiles &&
 							profiles.map((profiles) => (
@@ -99,7 +90,7 @@ const Profiles = ({ props }) => {
 							))}
 					</div>
 					<div className="filterBox">
-						<Typography>Salary</Typography>
+						<Typography className="salary">Salary</Typography>
 						<Slider
 							value={salary}
 							onChange={salaryHandler}

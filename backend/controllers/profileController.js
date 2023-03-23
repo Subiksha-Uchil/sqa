@@ -41,7 +41,7 @@ exports.createProfile = catchAsyncError(async (req, res, next) => {
 //get all profile
 
 exports.getAllProfiles = catchAsyncError(async (req, res, next) => {
-	const resultPerPage = 8;
+	const resultPerPage = 7;
 	const profilesCount = await Profile.countDocuments();
 	const Apifeature = new ApiFeatures(Profile.find(), req.query)
 		.search()
@@ -111,12 +111,12 @@ exports.deleteProfile = catchAsyncError(async (req, res, next) => {
 
 //create new review or update a review
 exports.createProfileReview = catchAsyncError(async (req, res, next) => {
-	const { rating, comment, profileId } = req.body;
+	const { ratings, comment, profileId } = req.body;
 
 	const review = {
 		users: req.user._id,
 		name: req.user.name,
-		rating: Number(rating),
+		ratings: Number(ratings),
 		comment,
 	};
 
@@ -129,7 +129,7 @@ exports.createProfileReview = catchAsyncError(async (req, res, next) => {
 	if (isReviewed) {
 		profile.reviews.forEach((rev) => {
 			if (rev.user.toString() === req.user._id.toString())
-				(rev.rating = rating), (rev.comment = comment);
+				(rev.ratings = ratings), (rev.comment = comment);
 		});
 	} else {
 		profile.reviews.push(review);
@@ -139,7 +139,7 @@ exports.createProfileReview = catchAsyncError(async (req, res, next) => {
 	let avg = 0;
 
 	profile.reviews.forEach((rev) => {
-		avg += rev.rating;
+		avg += rev.ratings;
 	});
 
 	profile.ratings = avg / profile.reviews.length;

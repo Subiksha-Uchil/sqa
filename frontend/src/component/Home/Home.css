@@ -15,7 +15,7 @@
 .main > h1 {
 	text-align: center;
 	text-transform: uppercase;
-	color: rgb(134, 112, 112);
+	color: rgb(133, 88, 111);
 	font-size: 4rem;
 }
 
@@ -29,7 +29,7 @@
 	justify-content: center;
 	align-items: center;
 
-	color: rgb(213, 180, 180);
+	color: rgb(172, 125, 136);
 }
 
 #spare-time {
@@ -37,7 +37,7 @@
 	font-style: italic;
 	letter-spacing: 1rem;
 	margin-top: 0;
-	color: rgb(213, 180, 180);
+	color: rgb(172, 125, 136);
 }
 
 .roller #rolltext {
@@ -62,7 +62,7 @@
 }
 
 body {
-	background-color: #f5ebeb;
+	background-color: rgb(249, 245, 231);
 }
 .banner {
 	text-align: center;
@@ -80,7 +80,7 @@ body {
 	align-items: center;
 }
 .how > h1 {
-	color: rgb(213, 180, 180);
+	color: rgb(222, 182, 171);
 	text-align: center;
 	font-family: Tahoma, sans-serif;
 	border-bottom: 1px transparent rgba(21, 21, 21, 0.5);
@@ -88,12 +88,12 @@ body {
 .MuiCardContent-root > h3 {
 	height: "50";
 	font-family: Georgia, serif;
-	color: rgb(134, 112, 112);
+	color: rgb(133, 88, 111);
 	text-align: center;
 }
 
 .cards {
-	color: rgb(213, 180, 180);
+	color: rgb(222, 182, 171);
 	padding-left: 8%;
 	padding-right: 8%;
 	padding-top: 5%;
@@ -103,7 +103,7 @@ body {
 	transform: translateY(-1vmax);
 }
 .Card {
-	background-color: rgb(213, 180, 180);
+	background-color: rgb(222, 182, 171);
 	justify-content: space-between;
 }
 .title {
@@ -170,48 +170,75 @@ body {
 
 .homeHeading {
 	text-align: center;
-	font-family: Roboto;
-	font-size: 1.4vmax;
-	border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+	font-family: "Roboto";
+	font-size: 2.4vmax;
+	border-bottom: 1.5px solid rgb(172, 125, 136);
 	width: 20vmax;
 	padding: 1vmax;
 	margin: 5vmax auto;
-	color: rgb(0, 0, 0, 0.7);
+	color: rgb(172, 125, 136);
 }
 
 .services {
-	padding-top: 2%;
-	justify-content: space-between;
-	background-color: rgb(213, 180, 180);
+	padding-top: 5%;
 	max-height: 800;
+	padding-bottom: 5%;
+	box-shadow: 0 0 1px;
+	background-color: rgb(248, 234, 216);
+	padding-left: 5;
+	padding-right: 5;
+	row-gap: 2;
 }
 
 .service:hover {
 	transform: translateY(-1vmax);
 }
-
+.explore {
+	align-items: center;
+	padding-top: 5%;
+	text-align: center;
+}
+.explore > button {
+	padding: 10px;
+	display: inline-block;
+	outline: 0;
+	border: 0;
+	margin: -1px;
+	border-radius: 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: white;
+	cursor: pointer;
+	background-color: rgb(172, 125, 136);
+}
+.explore > button:hover {
+	background: rgb(222, 182, 171);
+	transition: all 0.4s ease-in-out;
+}
 .services > h1 {
-	padding-top: 1%;
-	padding-bottom: 5%;
+	/* padding-top: 1%; */
+	padding-bottom: 1%;
 	text-align: center;
 	font-family: "Trebuchet MS", sans-serif;
 	font-size: 3rem;
-	color: rgb(245, 235, 235);
+	color: rgb(172, 125, 136);
 	text-transform: uppercase;
+}
+
+.services:hover {
+	visibility: visible;
 }
 
 .service1 {
 	padding-top: 2%;
 	padding-left: 5%;
 	padding-right: 5%;
-	justify-content: space-between;
-}
-.service2 {
-	padding-top: 5%;
-	padding-left: 5%;
-	padding-right: 5%;
-	padding-bottom: 2%;
-	justify-content: space-between;
+	justify-content: space-around;
+	/* background-color: rgb(245, 235, 235); */
+	display: flex;
+	flex-direction: row;
+	padding-left: 50;
+	padding-right: 50;
 }
 
 .container {
@@ -233,7 +260,10 @@ body {
 	margin: 2vmax;
 	transition: all 0.5s;
 	padding-bottom: 0.5vmax;
-	background-color: rgb(228, 208, 208);
+	background-color: rgb(248, 234, 216);
+}
+.stars {
+	color: rgb(172, 125, 136);
 }
 
 .profileCard > img {
@@ -249,20 +279,25 @@ body {
 .profileCard > div > Span {
 	margin: 0.5vmax;
 	font: 1.5vmax "Roboto";
+	font-weight: bold;
+	color: rgb(172, 125, 136);
 }
 
 .profileCard > p {
-	font-family: "Roboto";
-	font-size: 2vmax;
-	margin: 1vmax 0.5vmax;
+	font-size: 2rem;
+	color: rgb(133, 88, 111);
+	margin-top: -5px;
 	margin-bottom: 0;
+	text-align: center;
+	background-color: rgb(249, 245, 231);
 }
 
 .profileCard > span {
 	margin: 0.5vmax;
-	color: "#cea6ef";
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	color: rgb(172, 125, 136);
 	font-size: 1.5vmax;
+	border-top: 2px;
+	margin-top: -2px;
 }
 
 .profileCard:hover {

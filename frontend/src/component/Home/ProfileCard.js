@@ -7,7 +7,7 @@ const ProfileCard = ({ profiles }) => {
 	const options = {
 		edit: false,
 		color: "rgba(20,20,20,0.2)",
-		activeColor: "lavendar",
+		activeColor: "rgb(172, 125, 136)",
 		size: window.innerWidth < 600 ? 20 : 25,
 		value: profiles.ratings,
 		isHalf: true,
@@ -18,9 +18,10 @@ const ProfileCard = ({ profiles }) => {
 			<p> {profiles.name}</p>
 			<div>
 				<ReactStars {...options} />
-				<span>({profiles.category})</span>
+				<span>{profiles.category}</span>
 			</div>
-			<span>{`${profiles.experience} years of expertise`}</span>
+			<span>{`Experience: ${profiles.experience}years`}</span>
+			<span>{`Expected Salary: ${profiles.salary}/-per month`}</span>
 		</Link>
 	);
 };

@@ -56,7 +56,7 @@ const ProfileDetails = () => {
 
 	const [openReview, setOpenReview] = useState(false);
 	const [openContact, setOpenContact] = useState(false);
-	const [rating, setRating] = useState(0);
+	const [ratings, setRating] = useState(0);
 	const [comment, setComment] = useState("");
 
 	const submitReviewToggle = () => {
@@ -74,7 +74,7 @@ const ProfileDetails = () => {
 	const reviewSubmitHandler = () => {
 		const myForm = new FormData();
 
-		myForm.set("rating", rating);
+		myForm.set("ratings", ratings);
 		myForm.set("comment", comment);
 		myForm.set("profileId", id);
 
@@ -165,7 +165,7 @@ const ProfileDetails = () => {
 						<DialogContent className="submitDialog">
 							<Rating
 								onChange={(e) => setRating(e.target.value)}
-								value={rating}
+								value={ratings}
 								size="large"
 							/>
 
