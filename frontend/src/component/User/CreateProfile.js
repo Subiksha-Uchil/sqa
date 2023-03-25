@@ -56,13 +56,6 @@ const CreateProfile = ({}) => {
 		"Bangalore",
 		"Agra",
 		"Ahamdabad",
-		"Chennai",
-		"Bihar",
-		"Jaipur",
-		"Indore",
-		"Varanasi",
-		"Nagpur",
-		"Patna",
 	];
 
 	useEffect(() => {

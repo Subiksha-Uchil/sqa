@@ -1,3 +1,6 @@
+body {
+	background-color: rgb(249, 245, 231);
+}
 .accountContainer {
 	display: flex;
 	height: 100vh;
@@ -6,7 +9,7 @@
 	top: 0%;
 	left: 0%;
 	max-width: 100%;
-	background-color: white;
+	background-color: rgb(249, 245, 231);
 }
 
 .accountContainer > div {
@@ -37,9 +40,9 @@
 
 .accountContainer > div:first-child > a {
 	border: none;
-	background-color: tomato;
+	background-color: rgb(172, 125, 136);
 	font: 400 1vmax "Roboto";
-	color: white;
+	color: rgb(249, 245, 231);
 	text-decoration: none;
 	padding: 0.5vmax;
 	width: 30%;
@@ -49,7 +52,7 @@
 }
 
 .accountContainer > div:first-child > a:hover {
-	background-color: rgb(204, 78, 56);
+	background-color: rgb(172, 125, 136);
 }
 
 .accountContainer > div:last-child {
@@ -78,9 +81,9 @@
 
 .accountContainer > div:last-child > div:last-child > a {
 	border: none;
-	background-color: rgb(68, 68, 68);
+	background-color: rgb(167, 114, 125);
 	font: 400 1vmax "Roboto";
-	color: white;
+	color: rgb(249, 245, 231);
 	text-decoration: none;
 	padding: 0.5vmax;
 	text-align: center;
@@ -89,7 +92,7 @@
 }
 
 .accountContainer > div:last-child > div:last-child > a:hover {
-	background-color: rgb(31, 31, 31);
+	background-color: rgb(222, 182, 171);
 }
 
 @media screen and (max-width: 600px) {

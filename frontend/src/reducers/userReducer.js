@@ -35,6 +35,10 @@ import {
 	UPDATE_USER_SUCCESS,
 	UPDATE_USER_FAIL,
 	UPDATE_USER_RESET,
+	NEW_MESSAGE_FAIL,
+	NEW_MESSAGE_REQUEST,
+	NEW_MESSAGE_RESET,
+	NEW_MESSAGE_SUCCESS,
 	USER_DETAILS_REQUEST,
 	USER_DETAILS_SUCCESS,
 	USER_DETAILS_FAIL,
@@ -201,6 +205,39 @@ export const forgotPasswordReducer = (state = {}, action) => {
 				error: null,
 			};
 
+		default:
+			return state;
+	}
+};
+
+export const newMessageReducer = (state = {}, action) => {
+	switch (action.type) {
+		case NEW_MESSAGE_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case NEW_MESSAGE_SUCCESS:
+			return {
+				loading: false,
+				success: action.payload,
+			};
+		case NEW_MESSAGE_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+		case NEW_MESSAGE_RESET:
+			return {
+				...state,
+				success: false,
+			};
+		case CLEAR_ERRORS:
+			return {
+				...state,
+				error: null,
+			};
 		default:
 			return state;
 	}

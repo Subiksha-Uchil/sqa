@@ -1,16 +1,17 @@
 .newProfileContainer {
 	width: 100%;
 	box-sizing: border-box;
-	background-color: rgb(221, 221, 221);
+	background-color: rgb(249, 245, 231);
 	border-left: 1px solid rgba(0, 0, 0, 0.158);
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: 120vh;
 }
 .newProfileContainer h1 {
 	color: rgba(0, 0, 0, 0.733);
 	font: 300 2rem "Roboto";
 	text-align: center;
+	margin-bottom: 10px;
 }
 
 .createProfileForm {
@@ -20,8 +21,8 @@
 	margin: auto;
 	padding: 3vmax;
 	justify-content: space-evenly;
-	height: 70%;
-	width: 40vh;
+	height: 85%;
+	width: 70vh;
 	background-color: white;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
 }
@@ -42,6 +43,8 @@
 	border-radius: 4px;
 	font: 300 0.9vmax cursive;
 	outline: none;
+	margin-bottom: 10px;
+	box-shadow: 0 1px 2px grey;
 }
 
 .createProfileForm > div > svg {
@@ -85,7 +88,7 @@
 }
 #createProfileBtn {
 	border: none;
-	background-color: tomato;
+	background-color: rgb(172, 125, 136);
 	color: white;
 	font: 300 0.9vmax "Roboto";
 	width: 100%;
@@ -98,7 +101,7 @@
 }
 
 #createProfileBtn:hover {
-	background-color: rgb(179, 66, 46);
+	background-color: rgb(222, 182, 171);
 }
 
 @media screen and (max-width: 600px) {

@@ -17,7 +17,7 @@
 	align-items: center;
 	padding: 2vmax;
 	box-sizing: border-box;
-	border: 1px solid white;
+	border: 1px solid rgb(167, 114, 125);
 }
 
 .ProfileDetails > div:last-child {
@@ -119,36 +119,34 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.205);
 	padding: 1vmax 0;
 	color: rgba(0, 0, 0, 0.651);
-	font: 400 1vmax "Roboto";
+	font: 400 1.8vmax "Roboto";
 	margin: 1vmax 0;
 }
 
 .detailsBlock-4 {
+	padding-top: 8px;
 	color: rgba(0, 0, 0, 0.897);
-	font: 500 1vmax sans-serif;
+	font: 500 1.5vmax sans-serif;
 	border-top: 1px solid rgba(0, 0, 0, 0.205);
 }
 
 .detailsBlock-4 > p {
 	color: rgba(0, 0, 0, 0.534);
-	font: 300 0.8vmax sans-serif;
+	font: 300 1.2vmax sans-serif;
 }
 
-.contactNow {
-	border: none;
-	background-color: rgb(194, 146, 213);
-	font: 500 0.7vmax "Roboto";
-	border-radius: 20px;
-	padding: 0.6vmax 2vmax;
-	margin: 3vmax 0;
-	color: white;
-	cursor: pointer;
-	transition: all 0.5s;
-	outline: none;
+.butt {
+	width: 400px;
+	justify-self: center;
+	justify-items: center;
+	justify-content: space-evenly;
+	display: flex;
 }
+
 .submitReview {
+	padding-top: 5px;
 	border: none;
-	background-color: rgb(184, 134, 159);
+	background-color: rgb(172, 125, 136);
 	font: 200 0.7vmax "Roboto";
 	border-radius: 2px;
 	padding: 0.6vmax 2vmax;
@@ -156,10 +154,26 @@
 	color: white;
 	cursor: pointer;
 	transition: all 0.5s;
-	outline: none;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.contactNow {
+	padding-top: 5px;
+	border: none;
+	background-color: rgb(172, 125, 136);
+	font: 200 0.7vmax "Roboto";
+	border-radius: 2px;
+	padding: 5vmax 2vmax;
+	margin: 1vmax 0;
+	color: white;
+	cursor: pointer;
+	transition: all 0.5s;
+	justify-content: space-between;
+	text-align: center;
 }
 .submitReview:hover {
-	background-color: rgb(197, 68, 45);
+	background-color: rgb(222, 182, 171);
 	transform: scale(1.1);
 }
 

@@ -45,8 +45,8 @@ const ProfileDetails = () => {
 
 	const options = {
 		edit: false,
-		color: "rgba(20,20,20,0.2)",
-		activeColor: "lavendar",
+		color: "#EDDBC7",
+		activeColor: "#A7727D",
 		size: window.innerWidth < 600 ? 20 : 25,
 		value: profile.ratings,
 		isHalf: true,
@@ -139,21 +139,23 @@ const ProfileDetails = () => {
 								<span>({profile.numOfReviews} Reviews)</span>
 							</div>
 							<div className="detailsBlock-3">
-								<p>{`${profile.experience} years of experience`}</p>
+								<p className="exp">{`${profile.experience} years of experience`}</p>
 
 								<h2>{`Expected Salary: ${profile.salary}`}</h2>
-								<p>All salaries are calculated per day basis.</p>
+								<p>All salaries are calculated per month basis.</p>
 								<h2>{`Preferred Location:${profile.location}`}</h2>
 							</div>
 							<div className="detailsBlock-4">
 								Description:<p>{profile.description}</p>
 							</div>
-							<button className="submitReview" onClick={submitReviewToggle}>
-								Submit Review
-							</button>
-							<button className="contactNow" onClick={contactInfo}>
-								Contact Now
-							</button>
+							<div className="butt">
+								<button className="submitReview" onClick={submitReviewToggle}>
+									Submit Review
+								</button>
+								<button className="submitReview" onClick={contactInfo}>
+									Contact Now
+								</button>
+							</div>
 						</div>
 					</div>
 					<h3 className="reviewsHeading">REVIEWS</h3>

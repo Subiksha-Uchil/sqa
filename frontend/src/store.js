@@ -10,6 +10,7 @@ import {
 import {
 	accountReducer,
 	forgotPasswordReducer,
+	newMessageReducer,
 	userReducer,
 } from "./reducers/userReducer";
 
@@ -20,6 +21,7 @@ const reducer = combineReducers({
 	account: accountReducer,
 	forgotPassword: forgotPasswordReducer,
 	newReview: newReviewReducer,
+	newMessage: newMessageReducer,
 	newProfile: newProfileReducer,
 });
 

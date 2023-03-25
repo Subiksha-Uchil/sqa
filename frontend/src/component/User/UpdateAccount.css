@@ -5,7 +5,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(231, 231, 231);
+	background-color: rgb(249, 245, 231);
 	position: fixed;
 	top: 0%;
 	left: 0;
@@ -85,7 +85,7 @@
 	transition: all 0.5s;
 	padding: 0 1vmax;
 	color: rgba(0, 0, 0, 0.623);
-	background-color: rgb(255, 255, 255);
+	background-color: white;
 }
 
 #updateAccountImage > input::file-selector-button:hover {
@@ -94,7 +94,7 @@
 
 .updateAccountBtn {
 	border: none;
-	background-color: tomato;
+	background-color: rgb(172, 125, 136);
 	color: white;
 	font: 300 0.9vmax "Roboto";
 	width: 100%;
@@ -107,12 +107,12 @@
 }
 
 .updateAccountBtn:hover {
-	background-color: rgb(179, 66, 46);
+	background-color: rgb(222, 182, 171);
 }
 
 @media screen and (max-width: 600px) {
 	.updateAccountContainer {
-		background-color: white;
+		background-color: rgb(249, 245, 231);
 	}
 	.updateAccountBox {
 		width: 100vw;

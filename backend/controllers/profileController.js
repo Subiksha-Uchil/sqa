@@ -41,7 +41,7 @@ exports.createProfile = catchAsyncError(async (req, res, next) => {
 //get all profile
 
 exports.getAllProfiles = catchAsyncError(async (req, res, next) => {
-	const resultPerPage = 7;
+	const resultPerPage = 5;
 	const profilesCount = await Profile.countDocuments();
 	const Apifeature = new ApiFeatures(Profile.find(), req.query)
 		.search()

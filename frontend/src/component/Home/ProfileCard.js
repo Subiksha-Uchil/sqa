@@ -13,8 +13,15 @@ const ProfileCard = ({ profiles }) => {
 		isHalf: true,
 	};
 	return (
-		<Link className="profileCard" to={`/profile/${profiles._id}`} style={{}}>
-			<img src={profiles.images[0].url} alt={profiles.name} style={{}} />
+		<Link
+			className="profileCard"
+			to={`/profile/${profiles._id}`}
+			style={{ borderRadius: 10 }}>
+			<img
+				src={profiles.images[0].url}
+				alt={profiles.name}
+				style={{ borderRadius: 10 }}
+			/>
 			<p> {profiles.name}</p>
 			<div>
 				<ReactStars {...options} />
