@@ -7,7 +7,7 @@ import Loader from "../layout/Loader/Loader";
 import ProfileCard from "../Home/ProfileCard";
 import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
-import { Slider, Dropdown } from "@material-ui/core";
+import { Slider, Dropdown, colors } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 
@@ -98,8 +98,11 @@ const Profiles = ({ props }) => {
 							aria-aria-labelledby="range-slider"
 							min={0}
 							max={25000}
+							color="#A7727D"
 						/>
-						<Typography>Job Category</Typography>
+						<Typography style={{ textDecoration: "underline" }}>
+							Job Category
+						</Typography>
 						<ul className="categoryBox">
 							{categories.map((category) => (
 								<li

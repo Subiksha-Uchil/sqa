@@ -56,9 +56,11 @@
 	padding: 1vmax 0;
 }
 
-.detailsBlock-2-span {
+.detailsBlock-2 > span {
 	font: 200 0.8vmax cursive;
 	color: rgba(0, 0, 0, 0.699);
+	padding: 10px;
+	margin-top: 5px;
 }
 
 .detailsBlock-3 {
