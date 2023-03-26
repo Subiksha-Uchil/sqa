@@ -61,6 +61,16 @@ exports.getAllProfiles = catchAsyncError(async (req, res, next) => {
 	});
 });
 
+// Get All Product (Admin)
+exports.getAdminProfiles = catchAsyncError(async (req, res, next) => {
+	const profiles = await Profile.find();
+
+	res.status(200).json({
+		success: true,
+		profiles,
+	});
+});
+
 //get single profile details
 exports.getProfileDetails = catchAsyncError(async (req, res, next) => {
 	const profile = await Profile.findById(req.params.id);

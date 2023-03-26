@@ -3,6 +3,9 @@ import {
 	ALL_PROFILE_FAIL,
 	ALL_PROFILE_REQUEST,
 	ALL_PROFILE_SUCCESS,
+	ADMIN_PROFILE_FAIL,
+	ADMIN_PROFILE_REQUEST,
+	ADMIN_PROFILE_SUCCESS,
 	PROFILE_DETAILS_REQUEST,
 	PROFILE_DETAILS_SUCCESS,
 	PROFILE_DETAILS_FAIL,
@@ -46,6 +49,25 @@ export const getProfile =
 			});
 		}
 	};
+
+// Get All Products For Admin
+export const getAdminProfile = () => async (dispatch) => {
+	try {
+		dispatch({ type: ADMIN_PROFILE_REQUEST });
+
+		const { data } = await axios.get("/api/v1/admin/profiles");
+
+		dispatch({
+			type: ADMIN_PROFILE_SUCCESS,
+			payload: data.profiles,
+		});
+	} catch (error) {
+		dispatch({
+			type: ADMIN_PROFILE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
 
 export const getProfileDetails = (id) => async (dispatch) => {
 	try {

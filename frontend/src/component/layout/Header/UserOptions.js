@@ -29,7 +29,7 @@ const UserOptions = ({ users }) => {
 	}
 
 	function dashboard() {
-		history("/dashboard");
+		history("/admin/dashboard");
 	}
 	function account() {
 		history("/account");

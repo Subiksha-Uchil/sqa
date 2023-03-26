@@ -22,9 +22,11 @@ import ResetPassword from "./component/User/ResetPassword.js";
 import CreateProfile from "./component/User/CreateProfile.js";
 import About from "./component/layout/About/About";
 import Contact from "./component/layout/Contact/Contact";
+import Dashboard from "./component/admin/Dashboard.js";
+import ProfileList from "./component/admin/ProfileList.js";
 
 function App() {
-	const { loading, isAuthenticated, users } = useSelector(
+	const { loading, isAuthenticated, isAdmin, users } = useSelector(
 		(state) => state.users
 	);
 
@@ -52,6 +54,16 @@ function App() {
 					<Route path="/me/update" element={<UpdateAccount />} />
 					<Route path="/password/update" element={<UpdatePassword />} />
 					<Route path="/profile/new" element={<CreateProfile />} />
+					<Route
+						isAdmin={true}
+						path="/admin/dashboard"
+						element={<Dashboard />}
+					/>
+					<Route
+						isAdmin={true}
+						path="/admin/profiles"
+						element={<ProfileList />}
+					/>
 				</Route>
 				{/* <Route
 					path="/account"
