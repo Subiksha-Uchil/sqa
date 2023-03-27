@@ -12,6 +12,10 @@ import {
 	NEW_PROFILE_REQUEST,
 	NEW_PROFILE_RESET,
 	NEW_PROFILE_SUCCESS,
+	DELETE_PROFILE_REQUEST,
+	DELETE_PROFILE_FAIL,
+	DELETE_PROFILE_RESET,
+	DELETE_PROFILE_SUCCESS,
 	NEW_REVIEW_REQUEST,
 	NEW_REVIEW_SUCCESS,
 	NEW_REVIEW_FAIL,
@@ -115,6 +119,40 @@ export const newReviewReducer = (state = {}, action) => {
 			return {
 				...state,
 				success: false,
+			};
+		case CLEAR_ERRORS:
+			return {
+				...state,
+				error: null,
+			};
+		default:
+			return state;
+	}
+};
+
+export const profileReducer = (state = {}, action) => {
+	switch (action.type) {
+		case DELETE_PROFILE_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+		case DELETE_PROFILE_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				isDeleted: action.payload,
+			};
+		case DELETE_PROFILE_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+		case DELETE_PROFILE_RESET:
+			return {
+				...state,
+				isDeleted: false,
 			};
 		case CLEAR_ERRORS:
 			return {

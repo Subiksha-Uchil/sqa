@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, getAdminProfile } from "../../actions/profileAction";
+import {
+	clearErrors,
+	getAdminProfile,
+	deleteProfile,
+} from "../../actions/profileAction";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
@@ -10,15 +14,20 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Sidebar from "./Sidebar";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./profileList.css";
+import { DELETE_PROFILE_RESET } from "../../constants/profileConstants";
 
 const ProfileList = () => {
+	const { error, profiles } = useSelector((state) => state.profiles);
+	const { deleteError, isDelete } = useSelector((state) => state.profiles);
 	const dispatch = useDispatch();
 	const alert = useAlert();
-	const { id } = useParams();
-	const { error, profiles } = useSelector((state) => state.profiles);
+	const history = useNavigate();
+	const deleteProfileHandler = (id) => {
+		dispatch(deleteProfile(id));
+	};
 
 	useEffect(() => {
 		if (error) {
@@ -26,19 +35,19 @@ const ProfileList = () => {
 			dispatch(clearErrors());
 		}
 
-		// if (deleteError) {
-		//   alert.error(deleteError);
-		//   dispatch(clearErrors());
-		// }
+		if (deleteError) {
+			alert.error(deleteError);
+			dispatch(clearErrors());
+		}
 
-		// if (isDeleted) {
-		//   alert.success("Product Deleted Successfully");
-		//   history.push("/admin/dashboard");
-		//   dispatch({ type: DELETE_PRODUCT_RESET });
-		// }
+		if (isDelete) {
+			alert.success("Profile Deleted Successfully");
+			history("/admin/dashboard");
+			dispatch({ type: DELETE_PROFILE_RESET });
+		}
 
 		dispatch(getAdminProfile());
-	}, [dispatch, alert, error]);
+	}, [dispatch, alert, error, deleteError, isDelete, history]);
 
 	const columns = [
 		{ field: "id", headerName: "Profile ID", minWidth: 70, flex: 0.5 },
@@ -59,6 +68,13 @@ const ProfileList = () => {
 		},
 
 		{
+			field: "category",
+			headerName: "Category",
+			minWidth: 200,
+			flex: 1,
+		},
+
+		{
 			field: "actions",
 			flex: 0.3,
 			headerName: "Actions",
@@ -68,15 +84,11 @@ const ProfileList = () => {
 			renderCell: (params) => {
 				return (
 					<Fragment>
-						<Link to={`/admin/profile/${params.getValue(params.id, "id")}`}>
+						<Link to={`/admin/profile/${params.id}`}>
 							<EditIcon />
 						</Link>
 
-						<Button
-						// onClick={() =>
-						//     deleteProfileHandler(params.getValue(params.id, "id"))
-						// }
-						>
+						<Button onClick={() => deleteProfileHandler(params.id)}>
 							<DeleteIcon />
 						</Button>
 					</Fragment>
@@ -91,7 +103,8 @@ const ProfileList = () => {
 		profiles.forEach((item) => {
 			rows.push({
 				id: item._id,
-				price: item.salary,
+				salary: item.salary,
+				category: item.category,
 				name: item.name,
 			});
 		});
@@ -103,7 +116,7 @@ const ProfileList = () => {
 			<div className="dashboard">
 				<Sidebar />
 				<div className="profileListContainer">
-					<h1 id="profileListHeading">ALL PROFILES</h1>
+					<h1 className="profileListHeading">ALL PROFILES</h1>
 
 					<DataGrid
 						rows={rows}

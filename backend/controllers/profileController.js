@@ -111,6 +111,12 @@ exports.deleteProfile = catchAsyncError(async (req, res, next) => {
 	if (!profile) {
 		return next(new ErrorHandler("Profile Not found", 404));
 	}
+
+	//deleting images from cloudinary
+	for (let i = 0; i < profile.images.length; i++) {
+		await cloudinary.v2.uploader.destroy(profile.images[i].public_id);
+	}
+
 	await profile.remove();
 
 	res.status(200).json({

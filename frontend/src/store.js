@@ -6,6 +6,7 @@ import {
 	profileDetailsReducer,
 	newReviewReducer,
 	newProfileReducer,
+	profileReducer,
 } from "./reducers/profileReducers";
 import {
 	accountReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
 	newReview: newReviewReducer,
 	newMessage: newMessageReducer,
 	newProfile: newProfileReducer,
+	profile: profileReducer,
 });
 
 let initialState = {};

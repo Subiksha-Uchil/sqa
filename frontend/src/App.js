@@ -64,6 +64,12 @@ function App() {
 						path="/admin/profiles"
 						element={<ProfileList />}
 					/>
+
+					<Route
+						isAdmin={true}
+						path="/admin/profile"
+						element={<CreateProfile />}
+					/>
 				</Route>
 				{/* <Route
 					path="/account"

@@ -15,6 +15,9 @@ import {
 	NEW_PROFILE_FAIL,
 	NEW_PROFILE_REQUEST,
 	NEW_PROFILE_SUCCESS,
+	DELETE_PROFILE_REQUEST,
+	DELETE_PROFILE_FAIL,
+	DELETE_PROFILE_SUCCESS,
 	CLEAR_ERRORS,
 } from "../constants/profileConstants";
 
@@ -130,6 +133,25 @@ export const createProfile = (profileData) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: NEW_PROFILE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Delete Product
+export const deleteProfile = (id) => async (dispatch) => {
+	try {
+		dispatch({ type: DELETE_PROFILE_REQUEST });
+
+		const { data } = await axios.delete(`/api/v1/admin/profile/${id}`);
+
+		dispatch({
+			type: DELETE_PROFILE_SUCCESS,
+			payload: data.success,
+		});
+	} catch (error) {
+		dispatch({
+			type: DELETE_PROFILE_FAIL,
 			payload: error.response.data.message,
 		});
 	}

@@ -6,8 +6,13 @@ import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { clearErrors, getAdminProfile } from "../../actions/profileAction";
 
 const Dashboard = () => {
+	const dispatch = useDispatch();
+	const { error, profiles } = useSelector((state) => state.profiles);
 	const lineState = {
 		labels: ["Initial Amount", "Amount Earned"],
 		datasets: [
@@ -19,6 +24,10 @@ const Dashboard = () => {
 			},
 		],
 	};
+
+	useEffect(() => {
+		dispatch(getAdminProfile());
+	}, [dispatch]);
 
 	return (
 		<div className="dashboard">
@@ -34,7 +43,7 @@ const Dashboard = () => {
 					<div className="dashboardSummaryBox2">
 						<Link to="/admin/profiles">
 							<p>Profiles</p>
-							<p>50</p>
+							<p>{profiles && profiles.length}</p>
 						</Link>
 						<Link to="/admin/users">
 							<p>Users</p>
