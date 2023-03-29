@@ -24,6 +24,7 @@ router
 	.get(getProfileDetails);
 router
 	.route("/admin/profile/:id")
+	.put(isAuthenticatedUser, authorizeRoles("admin"), updateProfile)
 	.delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProfile);
 router.route("/review").put(isAuthenticatedUser, createProfileReview);
 router

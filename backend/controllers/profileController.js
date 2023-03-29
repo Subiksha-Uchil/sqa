@@ -92,6 +92,37 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
 		return next(new ErrorHandler("Profile Not found", 404));
 	}
 
+	//images
+	let images = [];
+
+	if (typeof req.body.images === "string") {
+		images.push(req.body.images);
+	} else {
+		images = req.body.images;
+	}
+
+	if (images !== undefined) {
+		// Deleting Images From Cloudinary
+		for (let i = 0; i < profile.images.length; i++) {
+			await cloudinary.v2.uploader.destroy(profile.images[i].public_id);
+		}
+
+		const imagesLinks = [];
+
+		for (let i = 0; i < images.length; i++) {
+			const result = await cloudinary.v2.uploader.upload(images[i], {
+				folder: "profiles",
+			});
+
+			imagesLinks.push({
+				public_id: result.public_id,
+				url: result.secure_url,
+			});
+		}
+
+		req.body.images = imagesLinks;
+	}
+
 	profile = await Profile.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 		runValidators: true,

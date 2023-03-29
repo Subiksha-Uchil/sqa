@@ -21,7 +21,9 @@ import { DELETE_PROFILE_RESET } from "../../constants/profileConstants";
 
 const ProfileList = () => {
 	const { error, profiles } = useSelector((state) => state.profiles);
-	const { deleteError, isDelete } = useSelector((state) => state.profiles);
+	const { error: deleteError, isDeleted } = useSelector(
+		(state) => state.profile
+	);
 	const dispatch = useDispatch();
 	const alert = useAlert();
 	const history = useNavigate();
@@ -40,14 +42,14 @@ const ProfileList = () => {
 			dispatch(clearErrors());
 		}
 
-		if (isDelete) {
+		if (isDeleted) {
 			alert.success("Profile Deleted Successfully");
 			history("/admin/dashboard");
 			dispatch({ type: DELETE_PROFILE_RESET });
 		}
 
 		dispatch(getAdminProfile());
-	}, [dispatch, alert, error, deleteError, isDelete, history]);
+	}, [dispatch, alert, error, deleteError, history, isDeleted]);
 
 	const columns = [
 		{ field: "id", headerName: "Profile ID", minWidth: 70, flex: 0.5 },

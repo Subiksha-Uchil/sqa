@@ -1,43 +1,43 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./CreateProfile.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import { clearErrors, createProfile } from "../../actions/profileAction";
+import {
+	clearErrors,
+	updateProfile,
+	getProfileDetails,
+} from "../../actions/profileAction";
 import { useAlert } from "react-alert";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
+import PlaceIcon from "@mui/icons-material/Place";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import PlaceIcon from "@mui/icons-material/Place";
-import EmailIcon from "@mui/icons-material/Email";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
-import SchoolIcon from "@mui/icons-material/School";
-import HistoryIcon from "@mui/icons-material/History";
-// import SideBar from "./Sidebar.js";
-import { NEW_PROFILE_RESET } from "../../constants/profileConstants";
+import SideBar from "./Sidebar";
+import { UPDATE_PROFILE_RESET } from "../../constants/profileConstants";
 
-const CreateProfile = ({}) => {
+const UpdateProfile = ({}) => {
 	const dispatch = useDispatch();
 	const alert = useAlert();
 	const history = useNavigate();
+	const { error, profile } = useSelector((state) => state.profileDetails);
 
-	const { loading, error, success } = useSelector((state) => state.newProfile);
+	const {
+		loading,
+		error: updateError,
+		isUpdated,
+	} = useSelector((state) => state.profile);
 
 	const [name, setName] = useState("");
 	const [salary, setSalary] = useState(0);
 	const [description, setDescription] = useState("");
 	const [category, setCategory] = useState("");
 	const [location, setLocation] = useState("");
-	const [experience, setExperience] = useState("");
 	const [images, setImages] = useState([]);
-	const [education, setEducation] = useState("");
-	const [workingHours, setWorkingHours] = useState(0);
-	const [email, setEmail] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState("");
+	const [oldImages, setOldImages] = useState([]);
 	const [imagesPreview, setImagesPreview] = useState([]);
+
 	const categories = [
 		"Maid",
 		"HomeChef",
@@ -56,21 +56,46 @@ const CreateProfile = ({}) => {
 		"Agra",
 		"Ahamdabad",
 	];
+	const profileId = useParams();
 
 	useEffect(() => {
+		if (profile && profile._id !== profileId.id) {
+			dispatch(getProfileDetails(profileId.id));
+		} else {
+			setName(profile.name);
+			setDescription(profile.description);
+			setSalary(profile.salary);
+			setCategory(profile.category);
+			setLocation(profile.location);
+			setOldImages(profile.images);
+		}
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
 
-		if (success) {
-			alert.success("Profile Created Successfully");
-			history("/account");
-			dispatch({ type: NEW_PROFILE_RESET });
+		if (updateError) {
+			alert.error(updateError);
+			dispatch(clearErrors());
 		}
-	}, [dispatch, alert, error, history, success]);
 
-	const createProfileSubmitHandler = (e) => {
+		if (isUpdated) {
+			alert.success("Profile Updated Successfully");
+			history("/admin/profiles");
+			dispatch({ type: UPDATE_PROFILE_RESET });
+		}
+	}, [
+		dispatch,
+		alert,
+		error,
+		history,
+		isUpdated,
+		profileId.id,
+		profile,
+		updateError,
+	]);
+
+	const updateProfileSubmitHandler = (e) => {
 		e.preventDefault();
 
 		const myForm = new FormData();
@@ -80,44 +105,22 @@ const CreateProfile = ({}) => {
 		myForm.set("description", description);
 		myForm.set("category", category);
 		myForm.set("location", location);
-		myForm.set("experience", experience);
-		myForm.set("education", education);
-		myForm.set("workingHours", workingHours);
-		myForm.set("email", email);
-		myForm.set("phoneNumber", phoneNumber);
 
 		images.forEach((image) => {
 			myForm.append("images", image);
 		});
-		dispatch(createProfile(myForm));
+		dispatch(updateProfile(profileId.id, myForm));
 	};
 
-	const createProfileImagesChange = (e) => {
+	const updateProfileImagesChange = (e) => {
 		const files = Array.from(e.target.files);
 
 		setImages([]);
 		setImagesPreview([]);
+		setOldImages([]);
 
 		files.forEach((file) => {
 			const reader = new FileReader();
-			function ValidateEmail(input) {
-				var validRegex =
-					/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-				if (input.value.match(validRegex)) {
-					alert("Valid email address!");
-
-					document.form1.text1.focus();
-
-					return true;
-				} else {
-					alert("Invalid email address!");
-
-					document.form1.text1.focus();
-
-					return false;
-				}
-			}
 
 			reader.onload = () => {
 				if (reader.readyState === 2) {
@@ -133,19 +136,20 @@ const CreateProfile = ({}) => {
 	return (
 		<Fragment>
 			<MetaData title="Create Profile" />
-			<div className="create profile">
+			<div className="dashboard">
+				<SideBar />
 				<div className="newProfileContainer">
 					<form
 						className="createProfileForm"
 						encType="multipart/form-data"
-						onSubmit={createProfileSubmitHandler}>
+						onSubmit={updateProfileSubmitHandler}>
 						<h1>Create Profile</h1>
 
 						<div>
 							<SpellcheckIcon />
 							<input
 								type="text"
-								placeholder="Name"
+								placeholder="Profile Name"
 								required
 								value={name}
 								onChange={(e) => setName(e.target.value)}
@@ -155,9 +159,10 @@ const CreateProfile = ({}) => {
 							<AttachMoneyIcon />
 							<input
 								type="number"
-								placeholder="Expected Salary"
+								placeholder="Salary"
 								required
 								onChange={(e) => setSalary(e.target.value)}
+								value={salary}
 							/>
 						</div>
 
@@ -165,7 +170,7 @@ const CreateProfile = ({}) => {
 							<DescriptionIcon />
 
 							<textarea
-								placeholder="Enter Description"
+								placeholder="Profile Description"
 								value={description}
 								onChange={(e) => setDescription(e.target.value)}
 								cols="30"
@@ -174,7 +179,9 @@ const CreateProfile = ({}) => {
 
 						<div>
 							<AccountTreeIcon />
-							<select onChange={(e) => setCategory(e.target.value)}>
+							<select
+								value={category}
+								onChange={(e) => setCategory(e.target.value)}>
 								<option value="">Choose Category</option>
 								{categories.map((cate) => (
 									<option key={cate} value={cate}>
@@ -183,10 +190,11 @@ const CreateProfile = ({}) => {
 								))}
 							</select>
 						</div>
-
 						<div>
 							<PlaceIcon />
-							<select onChange={(e) => setLocation(e.target.value)}>
+							<select
+								value={location}
+								onChange={(e) => setLocation(e.target.value)}>
 								<option value="">Choose Location</option>
 								{locations.map((loct) => (
 									<option key={loct} value={loct}>
@@ -196,63 +204,32 @@ const CreateProfile = ({}) => {
 							</select>
 						</div>
 
-						<div>
-							<EmailIcon />
-							<input
-								type="string"
-								placeholder="Email ID"
-								required
-								ValidateEmail
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-						</div>
-
-						<div>
-							<ContactsIcon />
-							<input
-								type="string"
-								placeholder="Phone Number"
-								required
-								maxLength={10}
-								onChange={(e) => setPhoneNumber(e.target.value)}
-							/>
-						</div>
-						<div>
-							<HourglassBottomIcon />
-							<input
-								type="number"
-								placeholder="Working Hours"
-								required
-								onChange={(e) => setWorkingHours(e.target.value)}
-							/>
-						</div>
-						<div>
-							<SchoolIcon />
-							<input
-								type="string"
-								placeholder="Education"
-								required
-								onChange={(e) => setEducation(e.target.value)}
-							/>
-						</div>
-						<div>
-							<HistoryIcon />
-							<input
-								type="number"
-								placeholder="Experience in years"
-								required
-								onChange={(e) => setExperience(e.target.value)}
-							/>
-						</div>
+						{/* <div>
+              <StorageIcon />
+              <input
+                type="number"
+                placeholder="Stock"
+                required
+                onChange={(e) => setStock(e.target.value)}
+                value={Stock}
+              />
+            </div> */}
 
 						<div id="createProfileFormFile">
 							<input
 								type="file"
 								name="avatar"
 								accept="image/*"
-								onChange={createProfileImagesChange}
+								onChange={updateProfileImagesChange}
 								multiple
 							/>
+						</div>
+
+						<div id="createProfileFormImage">
+							{oldImages &&
+								oldImages.map((image, index) => (
+									<img key={index} src={image.url} alt="Old Profile Preview" />
+								))}
 						</div>
 
 						<div id="createProfileFormImage">
@@ -274,4 +251,4 @@ const CreateProfile = ({}) => {
 	);
 };
 
-export default CreateProfile;
+export default UpdateProfile;

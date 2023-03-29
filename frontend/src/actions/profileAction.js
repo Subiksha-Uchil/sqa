@@ -17,6 +17,9 @@ import {
 	NEW_PROFILE_SUCCESS,
 	DELETE_PROFILE_REQUEST,
 	DELETE_PROFILE_FAIL,
+	UPDATE_PROFILE_FAIL,
+	UPDATE_PROFILE_REQUEST,
+	UPDATE_PROFILE_SUCCESS,
 	DELETE_PROFILE_SUCCESS,
 	CLEAR_ERRORS,
 } from "../constants/profileConstants";
@@ -133,6 +136,33 @@ export const createProfile = (profileData) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: NEW_PROFILE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Update Product
+export const updateProfile = (id, profileData) => async (dispatch) => {
+	try {
+		dispatch({ type: UPDATE_PROFILE_REQUEST });
+
+		const config = {
+			headers: { "Content-Type": "application/json" },
+		};
+
+		const { data } = await axios.put(
+			`/api/v1/admin/profile/${id}`,
+			profileData,
+			config
+		);
+
+		dispatch({
+			type: UPDATE_PROFILE_SUCCESS,
+			payload: data.success,
+		});
+	} catch (error) {
+		dispatch({
+			type: UPDATE_PROFILE_FAIL,
 			payload: error.response.data.message,
 		});
 	}
