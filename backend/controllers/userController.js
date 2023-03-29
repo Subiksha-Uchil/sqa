@@ -173,9 +173,9 @@ exports.updateAccount = catchAsyncError(async (req, res, next) => {
 	};
 
 	if (req.body.avatar !== "") {
-		const users = await Users.findById(req.user.id);
+		const user = await Users.findById(req.user.id);
 
-		const imageId = users.avatar.public_id;
+		const imageId = user.avatar.public_id;
 
 		await cloudinary.v2.uploader.destroy(imageId);
 
@@ -191,7 +191,7 @@ exports.updateAccount = catchAsyncError(async (req, res, next) => {
 		};
 	}
 
-	const users = await Users.findByIdAndUpdate(req.user.id, newUserData, {
+	const user = await Users.findByIdAndUpdate(req.user.id, newUserData, {
 		new: true,
 		runValidators: true,
 		useFindAndModify: false,
@@ -214,15 +214,15 @@ exports.getAllUser = catchAsyncError(async (req, res, next) => {
 
 //get single user profiles(admin)
 exports.getSingleUser = catchAsyncError(async (req, res, next) => {
-	const users = await Users.findById(req.params.id);
+	const user = await Users.findById(req.params.id);
 
-	if (!users) {
+	if (!user) {
 		return next(new ErrorHandler(`User does not exist!!! ${req.params.id}`));
 	}
 
 	res.status(200).json({
 		sucess: true,
-		users,
+		user,
 	});
 });
 
@@ -248,16 +248,19 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 //delete user
 
 exports.deleteUser = catchAsyncError(async (req, res, next) => {
-	//we will remove cloudinary later
-	const users = await Users.findById(req.params.id);
+	const user = await Users.findById(req.params.id);
 
-	if (!users) {
+	if (!user) {
 		return next(
 			new ErrorHandler(`User does not exist with id: ${req.params.id}`)
 		);
 	}
 
-	await Users.remove();
+	const imageId = user.avatar.public_id;
+
+	await cloudinary.v2.uploader.destroy(imageId);
+
+	await user.remove();
 
 	res.status(200).json({
 		sucess: true,

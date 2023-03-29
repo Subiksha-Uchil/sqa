@@ -18,10 +18,7 @@ router
 	.route("/admin/profiles")
 	.get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProfiles);
 router.route("/profile/new").post(isAuthenticatedUser, createProfile);
-router
-	.route("/profile/:id")
-	.put(isAuthenticatedUser, updateProfile)
-	.get(getProfileDetails);
+router.route("/profile/:id").get(getProfileDetails);
 router
 	.route("/admin/profile/:id")
 	.put(isAuthenticatedUser, authorizeRoles("admin"), updateProfile)

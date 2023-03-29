@@ -97,7 +97,8 @@ const UpdateProfile = ({}) => {
 
 	const updateProfileSubmitHandler = (e) => {
 		e.preventDefault();
-
+		alert.success("Profile Updated Succesfully!");
+		history("/admin/dashboard");
 		const myForm = new FormData();
 
 		myForm.set("name", name);
@@ -135,7 +136,7 @@ const UpdateProfile = ({}) => {
 
 	return (
 		<Fragment>
-			<MetaData title="Create Profile" />
+			<MetaData title="Update Profile" />
 			<div className="dashboard">
 				<SideBar />
 				<div className="newProfileContainer">
@@ -143,7 +144,7 @@ const UpdateProfile = ({}) => {
 						className="createProfileForm"
 						encType="multipart/form-data"
 						onSubmit={updateProfileSubmitHandler}>
-						<h1>Create Profile</h1>
+						<h1>Update Profile</h1>
 
 						<div>
 							<SpellcheckIcon />
@@ -204,17 +205,6 @@ const UpdateProfile = ({}) => {
 							</select>
 						</div>
 
-						{/* <div>
-              <StorageIcon />
-              <input
-                type="number"
-                placeholder="Stock"
-                required
-                onChange={(e) => setStock(e.target.value)}
-                value={Stock}
-              />
-            </div> */}
-
 						<div id="createProfileFormFile">
 							<input
 								type="file"
@@ -242,7 +232,7 @@ const UpdateProfile = ({}) => {
 							id="createProfileBtn"
 							type="submit"
 							disabled={loading ? true : false}>
-							Create
+							Update
 						</Button>
 					</form>
 				</div>

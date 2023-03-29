@@ -10,13 +10,16 @@ import {
 } from "./reducers/profileReducers";
 import {
 	accountReducer,
+	allUsersReducer,
 	forgotPasswordReducer,
 	newMessageReducer,
+	userDetailsReducer,
 	userReducer,
 } from "./reducers/userReducer";
 
 const reducer = combineReducers({
 	profiles: profilesReducer,
+	profile: profileReducer,
 	profileDetails: profileDetailsReducer,
 	users: userReducer,
 	account: accountReducer,
@@ -24,7 +27,8 @@ const reducer = combineReducers({
 	newReview: newReviewReducer,
 	newMessage: newMessageReducer,
 	newProfile: newProfileReducer,
-	profile: profileReducer,
+	allUsers: allUsersReducer,
+	userDetails: userDetailsReducer,
 });
 
 let initialState = {};

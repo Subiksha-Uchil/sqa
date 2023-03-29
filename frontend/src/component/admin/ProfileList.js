@@ -29,6 +29,8 @@ const ProfileList = () => {
 	const history = useNavigate();
 	const deleteProfileHandler = (id) => {
 		dispatch(deleteProfile(id));
+		alert.success("Profile Deleted Succesfully!");
+		history("/admin/dashboard");
 	};
 
 	useEffect(() => {
