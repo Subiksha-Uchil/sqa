@@ -13,6 +13,7 @@ import { clearErrors, getAdminProfile } from "../../actions/profileAction";
 const Dashboard = () => {
 	const dispatch = useDispatch();
 	const { error, profiles } = useSelector((state) => state.profiles);
+	const { users } = useSelector((state) => state.allUsers);
 	const lineState = {
 		labels: ["Initial Amount", "Amount Earned"],
 		datasets: [
@@ -47,7 +48,7 @@ const Dashboard = () => {
 						</Link>
 						<Link to="/admin/users">
 							<p>Users</p>
-							<p>2</p>
+							<p>{users && users.length}</p>
 						</Link>
 					</div>
 				</div>

@@ -7,6 +7,8 @@ import {
 	newReviewReducer,
 	newProfileReducer,
 	profileReducer,
+	profileReviewsReducer,
+	reviewReducer,
 } from "./reducers/profileReducers";
 import {
 	accountReducer,
@@ -29,6 +31,8 @@ const reducer = combineReducers({
 	newProfile: newProfileReducer,
 	allUsers: allUsersReducer,
 	userDetails: userDetailsReducer,
+	profileReviews: profileReviewsReducer,
+	review: reviewReducer,
 });
 
 let initialState = {};

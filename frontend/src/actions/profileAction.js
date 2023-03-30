@@ -21,6 +21,13 @@ import {
 	UPDATE_PROFILE_REQUEST,
 	UPDATE_PROFILE_SUCCESS,
 	DELETE_PROFILE_SUCCESS,
+	ALL_REVIEW_REQUEST,
+	ALL_REVIEW_SUCCESS,
+	ALL_REVIEW_FAIL,
+	DELETE_REVIEW_REQUEST,
+	DELETE_REVIEW_SUCCESS,
+	DELETE_REVIEW_FAIL,
+	DELETE_REVIEW_RESET,
 	CLEAR_ERRORS,
 } from "../constants/profileConstants";
 
@@ -182,6 +189,46 @@ export const deleteProfile = (id) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: DELETE_PROFILE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Get All Reviews of a Profile
+export const getAllReviews = (id) => async (dispatch) => {
+	try {
+		dispatch({ type: ALL_REVIEW_REQUEST });
+
+		const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+
+		dispatch({
+			type: ALL_REVIEW_SUCCESS,
+			payload: data.reviews,
+		});
+	} catch (error) {
+		dispatch({
+			type: ALL_REVIEW_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Delete Review of a Profile
+export const deleteReviews = (reviewId, profileId) => async (dispatch) => {
+	try {
+		dispatch({ type: DELETE_REVIEW_REQUEST });
+
+		const { data } = await axios.delete(
+			`/api/v1/reviews?id=${reviewId}&profileId=${profileId}`
+		);
+
+		dispatch({
+			type: DELETE_REVIEW_SUCCESS,
+			payload: data.success,
+		});
+	} catch (error) {
+		dispatch({
+			type: DELETE_REVIEW_FAIL,
 			payload: error.response.data.message,
 		});
 	}

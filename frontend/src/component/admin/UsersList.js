@@ -3,7 +3,7 @@ import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./profileList.css";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
@@ -13,11 +13,11 @@ import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
 
-const UsersList = ({ history }) => {
+const UsersList = ({}) => {
 	const dispatch = useDispatch();
 
 	const alert = useAlert();
-
+	const history = useNavigate();
 	const { error, users } = useSelector((state) => state.allUsers);
 
 	const {
@@ -28,6 +28,8 @@ const UsersList = ({ history }) => {
 
 	const deleteUserHandler = (id) => {
 		dispatch(deleteUser(id));
+		history("/admin/users");
+		alert.success("User Deleted Sucessfully!");
 	};
 
 	useEffect(() => {
@@ -43,7 +45,7 @@ const UsersList = ({ history }) => {
 
 		if (isDeleted) {
 			alert.success(message);
-			history.push("/admin/users");
+
 			dispatch({ type: DELETE_USER_RESET });
 		}
 

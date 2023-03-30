@@ -53,8 +53,6 @@ const UpdateUser = ({}) => {
 		}
 
 		if (isUpdated) {
-			alert.success("User Updated Successfully");
-			history("/admin/users");
 			dispatch({ type: UPDATE_USER_RESET });
 		}
 	}, [
@@ -78,6 +76,8 @@ const UpdateUser = ({}) => {
 		myForm.set("role", role);
 
 		dispatch(updateUser(userId.id, myForm));
+		alert.success("User Updated Successfully");
+		history("/admin/users");
 	};
 
 	return (

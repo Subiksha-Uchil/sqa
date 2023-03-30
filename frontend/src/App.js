@@ -27,6 +27,7 @@ import ProfileList from "./component/admin/ProfileList.js";
 import UpdateProfile from "./component/admin/UpdateProfile.js";
 import UsersList from "./component/admin/UsersList.js";
 import UpdateUser from "./component/admin/UpdateUser.js";
+import ReviewsList from "./component/admin/ProfileReviews.js";
 
 function App() {
 	const { loading, isAuthenticated, isAdmin, users } = useSelector(
@@ -85,6 +86,11 @@ function App() {
 						isAdmin={true}
 						path="/admin/user/:id"
 						element={<UpdateUser />}
+					/>
+					<Route
+						isAdmin={true}
+						path="/admin/reviews"
+						element={<ReviewsList />}
 					/>
 				</Route>
 				{/* <Route
