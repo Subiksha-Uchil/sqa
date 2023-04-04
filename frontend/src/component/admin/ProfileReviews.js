@@ -166,7 +166,7 @@ const ProfileReviews = () => {
 							autoHeight
 						/>
 					) : (
-						<h1 className="profileReviewsFormHeading">No Reviews Found</h1>
+						<h1 className="profileReviewsFormHeadings">No Reviews Found</h1>
 					)}
 				</div>
 			</div>

@@ -91,7 +91,9 @@ const Contact = () => {
 									</p>
 									<p className="home">
 										<EmailIcon className="me-3" />
-										sakhiportal@gmail.com
+										<a className="home" href="mailto:sakhiportal@gmail.com">
+											sakhiportal@gmail.com
+										</a>
 									</p>
 									<p className="home">
 										<PhoneIcon className="me-3" /> + 01 234 567 88

@@ -20,7 +20,7 @@ const ProfileCard = ({ profiles }) => {
 			<img
 				src={profiles.images[0].url}
 				alt={profiles.name}
-				style={{ borderRadius: 10 }}
+				style={{ borderRadius: 10, maxHeight: 300, maxWidth: 350 }}
 			/>
 			<p> {profiles.name}</p>
 			<div>

@@ -134,6 +134,7 @@ body {
 .detail > h3 {
 	color: rgb(172, 125, 136);
 	font: 100 1.6vmax "Garamond";
+	text-align: center;
 }
 
 .detail > h3 > p {

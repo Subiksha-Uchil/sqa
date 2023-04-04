@@ -54,7 +54,12 @@ const ProfileList = () => {
 	}, [dispatch, alert, error, deleteError, history, isDeleted]);
 
 	const columns = [
-		{ field: "id", headerName: "Profile ID", minWidth: 70, flex: 0.5 },
+		{
+			field: "id",
+			headerName: "Profile ID",
+			minWidth: 70,
+			flex: 0.5,
+		},
 
 		{
 			field: "name",
@@ -123,6 +128,11 @@ const ProfileList = () => {
 					<h1 className="profileListHeading">ALL PROFILES</h1>
 
 					<DataGrid
+						columnVisibilityModel={{
+							// Hide columns status and traderName, the other columns will remain visible
+							status: false,
+							traderName: false,
+						}}
 						rows={rows}
 						columns={columns}
 						pageSize={10}

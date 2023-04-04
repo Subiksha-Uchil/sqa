@@ -4,7 +4,7 @@ import "./sidebar.css";
 import "./dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { Line } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,16 +12,16 @@ import { clearErrors, getAdminProfile } from "../../actions/profileAction";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
-	const { error, profiles } = useSelector((state) => state.profiles);
 	const { users } = useSelector((state) => state.allUsers);
-	const lineState = {
-		labels: ["Initial Amount", "Amount Earned"],
+	const { error, profiles } = useSelector((state) => state.profiles);
+
+	const doughnutState = {
+		labels: ["users", "profiles"],
 		datasets: [
 			{
-				label: "TOTAL AMOUNT",
-				backgroundColor: ["tomato"],
-				hoverBackgroundColor: ["rgb(197, 72, 49)"],
-				data: [0, 4000],
+				backgroundColor: ["#AC7D88", "#85586F"],
+				hoverBackgroundColor: ["#F8EAD8", "#DEB6AB"],
+				data: [users.length, profiles.length],
 			},
 		],
 	};
@@ -38,7 +38,7 @@ const Dashboard = () => {
 				<div className="dashboardSummary">
 					<div>
 						<p>
-							Total Amount <br /> Rs.2000
+							Welcome Admin!!!! <br />
 						</p>
 					</div>
 					<div className="dashboardSummaryBox2">
@@ -52,8 +52,8 @@ const Dashboard = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="lineChart">
-					<Line data={lineState} />
+				<div className="doughnutChart">
+					<Doughnut data={doughnutState} />
 				</div>
 			</div>
 		</div>

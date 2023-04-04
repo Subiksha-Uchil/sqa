@@ -20,6 +20,13 @@
 	color: rgba(0, 0, 0, 0.733);
 	font: 300 2rem "Roboto";
 	text-align: center;
+	font-weight: bold;
+}
+
+.profileReviewsFormHeadings {
+	color: rgba(0, 0, 0, 0.733);
+	font: 300 1.5rem "Roboto";
+	text-align: center;
 }
 
 .profileReviewsForm > div {
