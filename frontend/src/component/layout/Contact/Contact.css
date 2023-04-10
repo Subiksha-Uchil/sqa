@@ -26,7 +26,7 @@ body {
 	top: 50%;
 	background-color: white;
 	width: 80vw;
-	height: 80vh;
+	height: 90vh;
 	transform: translateX(-50%) translateY(-50%);
 	box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.192);
 
@@ -95,6 +95,7 @@ body {
 }
 
 .feedback {
+	padding-top: 10%;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -108,14 +109,15 @@ body {
 }
 
 .messageForm {
+	padding-bottom: 30%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
-	padding: 2vmax;
+	top: 20%;
 	font-family: "Garamond";
 	justify-content: space-evenly;
-	height: 70%;
+	height: 30%;
 	transition: all 0.5s;
 }
 
@@ -144,8 +146,6 @@ body {
 .socialcontact {
 	left: 50%;
 	display: flex;
-	padding-top: 2px;
-	padding: 1rem;
 	align-items: center;
 	justify-content: space-evenly;
 }
@@ -153,13 +153,13 @@ body {
 .socialcontact > h3 {
 	color: rgba(0, 0, 0, 0.623);
 	font: 100 2.5vmax "Garamond";
-	margin: 2vmax;
+	margin: 0vmax;
 	font-weight: bold;
 	text-align: center;
 }
 .soci {
 	color: rgb(172, 125, 136);
-	font: 10 1.6vmax "Garamond";
+	font: 5 1vmax "Garamond";
 }
 .socialcontact > li {
 	border-bottom: 2px;
@@ -175,6 +175,7 @@ body {
 }
 .SubmitBtn {
 	border: none;
+	top: 30%;
 	background-color: rgb(133, 88, 111);
 	color: white;
 	font: 300 0.9vmax "Garamond";
