@@ -57,6 +57,12 @@ function App() {
 				<Route exact path="/profile/:id" element={<ProfileDetails />} />
 				<Route exact path="/profiles" element={<Profiles />} />
 				<Route exact path="/profiles/:keyword" element={<Profiles />} />
+			</Routes>
+			<Footer />
+			<Routes>
+				<Route exact path="/about" element={<About />} />
+				<Route exact path="/contact" element={<Contact />} />
+
 				<Route path="/search" element={<Search />} />
 				<Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
 					<Route path="/account" element={<Account />} />
@@ -107,15 +113,9 @@ function App() {
 						</ProtectedRoute>
 					}
 				/> */}
-
 				<Route path="/password/forgot" element={<ForgotPassword />} />
 				<Route path="/password/reset/:token" element={<ResetPassword />} />
 				<Route exact path="/login" element={<LoginSignUp />} />
-			</Routes>
-			<Footer />
-			<Routes>
-				<Route exact path="/about" element={<About />} />
-				<Route exact path="/contact" element={<Contact />} />
 			</Routes>
 		</Router>
 	);
