@@ -69,9 +69,11 @@
 
 .filterBox {
 	width: 13vmax;
-	position: absolute;
+	height: 100%;
+	position: fixed;
 	padding-left: 0.2%;
-	top: 7vmax;
+	padding-top: 7vmax;
+	top: 0vmax;
 	border-radius: 2px;
 	background-color: rgb(222, 182, 171);
 	color: rgb(249, 245, 231);

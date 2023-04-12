@@ -1,6 +1,11 @@
 import "./App.css";
 import Header from "./component/layout/Header/Header.js";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	Switch,
+} from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer.js";
@@ -93,6 +98,7 @@ function App() {
 						element={<ReviewsList />}
 					/>
 				</Route>
+				{/* other way */}
 				{/* <Route
 					path="/account"
 					element={
@@ -105,10 +111,12 @@ function App() {
 				<Route path="/password/forgot" element={<ForgotPassword />} />
 				<Route path="/password/reset/:token" element={<ResetPassword />} />
 				<Route exact path="/login" element={<LoginSignUp />} />
+			</Routes>
+			<Footer />
+			<Routes>
 				<Route exact path="/about" element={<About />} />
 				<Route exact path="/contact" element={<Contact />} />
 			</Routes>
-			<Footer />
 		</Router>
 	);
 }

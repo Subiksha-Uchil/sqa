@@ -5,6 +5,8 @@ footer {
 	color: rgb(248, 236, 209);
 	display: flex;
 	align-items: center;
+	position: absolute;
+	width: 96%;
 }
 
 .leftFooter {
