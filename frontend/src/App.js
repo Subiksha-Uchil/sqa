@@ -28,7 +28,6 @@ import UpdateProfile from "./component/admin/UpdateProfile.js";
 import UsersList from "./component/admin/UsersList.js";
 import UpdateUser from "./component/admin/UpdateUser.js";
 import ReviewsList from "./component/admin/ProfileReviews.js";
-import Loader from "./component/layout/Loader/Loader";
 
 function App() {
 	const { loading, isAuthenticated, isAdmin, users } = useSelector(
