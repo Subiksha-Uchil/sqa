@@ -81,7 +81,7 @@ const ProfileReviews = () => {
 		},
 
 		{
-			field: "rating",
+			field: "ratings",
 			headerName: "Rating",
 			type: "number",
 			minWidth: 180,
@@ -117,7 +117,7 @@ const ProfileReviews = () => {
 		reviews.forEach((item) => {
 			rows.push({
 				id: item._id,
-				rating: item.rating,
+				ratings: item.ratings,
 				comment: item.comment,
 				user: item.name,
 			});

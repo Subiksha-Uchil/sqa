@@ -199,6 +199,20 @@ exports.createProfileReview = catchAsyncError(async (req, res, next) => {
 });
 
 //get all reviews of a profile
+exports.getAllProfilesofUser = catchAsyncError(async (req, res, next) => {
+	const profiles = await Profile.findById(req.query.id);
+
+	if (!profiles) {
+		return next(new ErrorHandler("Profiles not found", 404));
+	}
+
+	res.status(200).json({
+		success: true,
+		profiles,
+	});
+});
+
+//get all reviews of a profile
 exports.getProfileReviews = catchAsyncError(async (req, res, next) => {
 	const profile = await Profile.findById(req.query.id);
 

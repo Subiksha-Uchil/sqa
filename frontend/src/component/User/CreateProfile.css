@@ -6,6 +6,7 @@
 	display: flex;
 	flex-direction: column;
 	height: 120vh;
+	position: absolute;
 }
 .newProfileContainer h1 {
 	color: rgba(0, 0, 0, 0.733);

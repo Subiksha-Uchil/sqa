@@ -69,7 +69,7 @@ const profileSchema = mongoose.Schema({
 				type: String,
 				required: true,
 			},
-			rating: {
+			ratings: {
 				type: Number,
 				required: true,
 			},
@@ -103,6 +103,9 @@ const profileSchema = mongoose.Schema({
 	createdAt: {
 		type: Date,
 		default: Date.now,
+	},
+	createdBy: {
+		type: String,
 	},
 });
 

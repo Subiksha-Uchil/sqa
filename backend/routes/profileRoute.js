@@ -9,6 +9,7 @@ const {
 	createProfileReview,
 	getProfileReviews,
 	deleteReview,
+	getAllProfilesofUser,
 } = require("../controllers/profileController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = express.Router();
@@ -24,6 +25,9 @@ router
 	.put(isAuthenticatedUser, authorizeRoles("admin"), updateProfile)
 	.delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProfile);
 router.route("/review").put(isAuthenticatedUser, createProfileReview);
+router
+	.route("/userprofiles/:id")
+	.put(isAuthenticatedUser, getAllProfilesofUser);
 router
 	.route("/reviews")
 	.get(getProfileReviews)

@@ -195,6 +195,25 @@ export const deleteProfile = (id) => async (dispatch) => {
 };
 
 // Get All Reviews of a Profile
+export const getAllProfilesofUser = (id) => async (dispatch) => {
+	try {
+		dispatch({ type: ALL_PROFILE_REQUEST });
+
+		const { data } = await axios.get(`/api/v1/userprofiles?id=${id}`);
+
+		dispatch({
+			type: ALL_PROFILE_SUCCESS,
+			payload: data.profiles,
+		});
+	} catch (error) {
+		dispatch({
+			type: ALL_PROFILE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Get All Reviews of a Profile
 export const getAllReviews = (id) => async (dispatch) => {
 	try {
 		dispatch({ type: ALL_REVIEW_REQUEST });

@@ -25,6 +25,7 @@ const CreateProfile = ({}) => {
 	const history = useNavigate();
 
 	const { loading, error, success } = useSelector((state) => state.newProfile);
+	const { users } = useSelector((state) => state.users);
 
 	const [name, setName] = useState("");
 	const [salary, setSalary] = useState(0);
@@ -38,6 +39,7 @@ const CreateProfile = ({}) => {
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [imagesPreview, setImagesPreview] = useState([]);
+	const [createdBy, setCreatedBy] = useState("");
 	const categories = [
 		"Maid",
 		"HomeChef",
@@ -85,7 +87,7 @@ const CreateProfile = ({}) => {
 		myForm.set("workingHours", workingHours);
 		myForm.set("email", email);
 		myForm.set("phoneNumber", phoneNumber);
-
+		myForm.set("createdBy", users._id);
 		images.forEach((image) => {
 			myForm.append("images", image);
 		});
@@ -100,24 +102,6 @@ const CreateProfile = ({}) => {
 
 		files.forEach((file) => {
 			const reader = new FileReader();
-			function ValidateEmail(input) {
-				var validRegex =
-					/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-				if (input.value.match(validRegex)) {
-					alert("Valid email address!");
-
-					document.form1.text1.focus();
-
-					return true;
-				} else {
-					alert("Invalid email address!");
-
-					document.form1.text1.focus();
-
-					return false;
-				}
-			}
 
 			reader.onload = () => {
 				if (reader.readyState === 2) {

@@ -28,6 +28,8 @@ import UpdateProfile from "./component/admin/UpdateProfile.js";
 import UsersList from "./component/admin/UsersList.js";
 import UpdateUser from "./component/admin/UpdateUser.js";
 import ReviewsList from "./component/admin/ProfileReviews.js";
+import DelUpdateProfile from "./component/User/DelUpdateProfile.js";
+import Loader from "./component/layout/Loader/Loader";
 
 function App() {
 	const { loading, isAuthenticated, isAdmin, users } = useSelector(
@@ -55,6 +57,7 @@ function App() {
 			</Routes>
 			<Footer />
 			<Routes>
+				<Route exact path="/load" element={<Loader />} />
 				<Route exact path="/about" element={<About />} />
 				<Route exact path="/contact" element={<Contact />} />
 
@@ -63,7 +66,8 @@ function App() {
 					<Route path="/account" element={<Account />} />
 					<Route path="/me/update" element={<UpdateAccount />} />
 					<Route path="/password/update" element={<UpdatePassword />} />
-					<Route path="/profile/new" element={<CreateProfile />} />
+					<Route path="/profile" element={<CreateProfile />} />
+					<Route path="/userprofile/update" element={<DelUpdateProfile />} />
 					<Route
 						isAdmin={true}
 						path="/admin/dashboard"
