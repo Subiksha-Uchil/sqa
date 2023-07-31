@@ -47,6 +47,7 @@ const CreateProfile = ({}) => {
 		"Massage-Therapist",
 		"Plumber",
 		"Electrician",
+		"wATCHMAN",
 	];
 	const locations = [
 		"Mumbai",
